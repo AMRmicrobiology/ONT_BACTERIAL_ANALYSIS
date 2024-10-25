@@ -1,0 +1,9 @@
+task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	peak_vmem	rchar	wchar
+1	0c/5a225e	489209	hybrid_vc:pre_process:QC (Quality control RAW data)	CACHED	0	2024-10-25 16:03:06.285	9.3s	8.5s	82.8%	1.9 GB	62 GB	44.8 MB	920 KB
+2	77/2b48d5	492921	hybrid_vc:pre_process:QC (Quality control RAW data)	CACHED	0	2024-10-25 16:03:15.643	7.4s	6.6s	105.1%	1.3 GB	43.6 GB	46.3 MB	677.3 KB
+3	4a/083a45	485316	hybrid_vc:pre_process:QC (Quality control RAW data)	CACHED	0	2024-10-25 16:02:56.482	9.8s	8.9s	84.0%	1.9 GB	62.1 GB	40 MB	552.4 KB
+4	e1/9fdec1	529696	hybrid_vc:pre_process:TRIMMING (prunning process)	COMPLETED	0	2024-10-25 17:02:47.972	2.2s	1.5s	452.8%	102.9 MB	6.7 GB	17.3 MB	179.2 KB
+6	29/f6bea0	530196	hybrid_vc:pre_process:TRIMMING (prunning process)	COMPLETED	0	2024-10-25 17:02:50.156	1.9s	1.3s	508.1%	116.7 MB	6.7 GB	17.4 MB	214.5 KB
+5	51/3a6177	530666	hybrid_vc:pre_process:TRIMMING (prunning process)	COMPLETED	0	2024-10-25 17:02:52.077	2.1s	1.5s	448.1%	109.6 MB	6.7 GB	17.2 MB	125.7 KB
+7	65/346f80	531170	hybrid_vc:assamble_process:SUB_SAMPLE (SUB SAMPLE TRYCYCLER FROM LONG READS)	FAILED	1	2024-10-25 17:02:54.219	1.2s	1.1s	-	-	-	-	-
+8	8c/ba5bb6	531623	hybrid_vc:assamble_process:SUB_SAMPLE (SUB SAMPLE TRYCYCLER FROM LONG READS)	ABORTED	-	2024-10-25 17:02:55.457	-	-	-	-	-	-	-
