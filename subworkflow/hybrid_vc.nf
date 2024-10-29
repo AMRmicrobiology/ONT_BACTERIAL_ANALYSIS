@@ -21,10 +21,12 @@ Configuration environemnt:
 include { QC                                          }     from '../bin/qc/main'
 include { TRIMMING                                    }     from '../bin/trimming/main'
 include { SUB_SAMPLE                                  }     from '../bin/assemble/trycycler/subsample_main'
+include { SUB_SAMPLE_1                                }     from '../bin/assemble/canu/main'
+
 /*
-include { SUB_SAMPLE_1                                }     from '../bin/qc/fastqc/main'
-include { SUB_SAMPLE_2                                }     from '../bin/assemble/main'
-include { SUB_SAMPLE_3                                }     from '../bin/assemble/main'
+
+include { SUB_SAMPLE_2                                }     from '../bin/assemble/fly/main'
+include { SUB_SAMPLE_3                                }     from '../bin/assemble/raven/main'
 include { MERGE_ASSEMBLE                              }     from '../bin/assemble/main'
 include { POLISHING_1                                 }     from '../bin/assemble/main'
 include { CONSENSUM                                   }     from '../bin/assemble/main'
@@ -77,15 +79,33 @@ workflow assamble_process {
     trimming_ch
     
     main:
+
     genome_size_map = file("$params.genome_size_file")
                           .splitCsv(header:true)
                           .collectEntries { row -> [(row.barcode): row.genome_size]}
 
-    subsample_trycycler_ch = SUB_SAMPLE(trimming_ch)
+    subsample_trycycler_ch = SUB_SAMPLE(trimming_ch, genome_size_map)
+    
+    genome_size_ch = Channel
+                        .fromPath(params.genome_size_file)
+                        .splitCsv(header: true)
+                        .map { row -> tuple(row.barcode, row.genome_size as int) }
+
+    reads_with_size_ch = subsample_trycycler_ch.join(genome_size_ch)
+
+    sub_sample_1_canu_ch = SUB_SAMPLE_1(reads_with_size_ch)
+    
+
+    
     /*
-    sub_sample_1_canu_ch = SUB_SAMPLE_1()
-    sub_sample_2_fly_ch = SUB_SAMPLE_2()
-    sub_sample_3_raven_ch = SUB_SAMPLE_3()
+
+
+    
+    sub_sample_2_fly_ch = SUB_SAMPLE_2(reads_with_size_ch)
+    sub_sample_3_raven_ch = SUB_SAMPLE_3(reads_with_size_ch)
+
+    
+
 
     emit:
     */

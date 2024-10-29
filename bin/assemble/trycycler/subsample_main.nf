@@ -6,20 +6,23 @@ process SUB_SAMPLE {
     input:
 
     tuple val(barcode_id), path(barcode_file)
+    val genome_size_map
 
     output:
 
-    path("subsample_${barcode_id}/")
+    tuple val(barcode_id), path("combine_${barcode_id}.fastq")
 
 
     script:
 
     def genome_size = genome_size_map[barcode_id]
     """
-    trycycler subsample \\
-        --reads ${barcode_file} \\ 
-        --out_dir subsample_${barcode_id} \\
+    trycycler subsample \
+        --reads ${barcode_file} \
+        --out_dir subsample_${barcode_id} \
         --genome_size ${genome_size}
+    
+    cat subsample_${barcode_id}/*.fastq > combine_${barcode_id}.fastq
     """
 
 }

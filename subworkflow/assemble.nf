@@ -20,10 +20,14 @@ Configuration environemnt:
 
 //Call all the sub-work
 
-include { FASTQC_QUALITY as FASTQC_QUALITY_ORIGINAL           }     from '../bin/qc/fastqc/main'
-include { TRIMMING                                            }     from '../bin/trimming/main'
-include { FASTQC_QUALITY as FASTQC_QUALITY_FINAL              }     from '../bin/qc/fastqc/main'
-include { ASSEMBLE                                            }     from '../bin/assemble/main'
+include { QC                                          }     from '../bin/qc/main'
+include { TRIMMING                                    }     from '../bin/trimming/main'
+include { SUB_SAMPLE_2 as a ASSEMBLE                  }     from '../bin/assemble/fly/main'
+/*
+
+
+
+
 include { QUAST                                               }     from '../bin/qc/quast/main'
 include { MULTIQC                                             }     from '../bin/qc/multiqc/main' 
 include { PROKKA                                              }     from '../bin/anotations/prokka/main'
@@ -42,13 +46,43 @@ include { DECOMPRESS_VCF                                      }     from '../bin
 include { SNPEFF                                              }     from '../bin/snpeff/main'
 include { AMR as POST_ANALYSIS_ABRICATE                       }     from '../bin/AMR/abricate/main'
 include { AMR_2 as POST_ANALYSIS_AMRFINDER                    }     from '../bin/AMR/AMRFinder/main'
-/*
 
 
 
 */
-workflow novo {
-    preprocess_output = workflow_pre_process()
-    assambleprocess_output = workflow_post_process(preprocess_output.personal_ref_ch, preprocess_output.fq_gz_reads_ch)
+workflow hybrid_vc {
+    preprocess_output = pre_process()
+    assambleprocess_output = assamble_process(preprocess_output.trimming_ch)
+     /*
     amrprocess_output = workflow_amr( preprocess_output.contigs_ch)
+    */
+}
+
+workflow pre_process {
+    take:
+    main:
+    barcode_dir_ch = channel.fromPath(params.input, type: 'dir').map{barcode_dir -> tuple(barcode_dir.baseName, barcode_dir)}
+    qc_ch = QC(barcode_dir_ch)
+    trimming_ch = TRIMMING(qc_ch.fastq_combine)
+
+    emit:
+    trimming_ch
+
+}
+
+workflow assamble_process {
+    take:
+    trimming_ch
+    
+    main:
+    
+    genome_size_ch = Channel
+                    .fromPath(params.genome_size_file)
+                    .splitCsv(header: true)
+                    .map { row -> tuple(row.barcode, row.genome_size as int) }
+
+    reads_with_size_ch = subsample_trycycler_ch.join(genome_size_ch)
+
+    sub_sample_1_canu_ch = ASSEMBLE(reads_with_size_ch)
+
 }
