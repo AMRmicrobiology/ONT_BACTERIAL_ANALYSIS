@@ -1,9 +1,7 @@
 task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	peak_vmem	rchar	wchar
-1	ae/118f47	2474214	hybrid_vc:pre_process:QC (Quality control RAW data)	CACHED	0	2024-10-28 12:55:32.939	1m 31s	1m 30s	75.7%	1.8 GB	53.2 GB	1.3 GB	641.7 MB
-2	f7/a4420a	2484787	hybrid_vc:pre_process:QC (Quality control RAW data)	CACHED	0	2024-10-28 12:57:23.833	45.7s	45s	76.7%	2.6 GB	71.9 GB	636.9 MB	302.5 MB
-4	0f/7fd8ca	2489789	hybrid_vc:pre_process:TRIMMING (prunning process)	CACHED	0	2024-10-28 12:58:09.529	7m 55s	7m 54s	765.8%	1.9 GB	13.1 GB	3.3 GB	2 GB
-3	ba/fde508	2506805	hybrid_vc:pre_process:TRIMMING (prunning process)	CACHED	0	2024-10-28 13:07:30.515	6m 23s	6m 23s	818.4%	1.1 GB	13 GB	1.5 GB	960.1 MB
-5	80/590cdc	2767808	hybrid_vc:assamble_process:SUB_SAMPLE (SUB SAMPLE TRYCYCLER FROM LONG READS)	CACHED	0	2024-10-28 16:13:18.685	42.2s	35.5s	127.3%	69.4 MB	3.8 GB	11 GB	8.9 GB
-6	cf/6dc949	2766585	hybrid_vc:assamble_process:SUB_SAMPLE (SUB SAMPLE TRYCYCLER FROM LONG READS)	CACHED	0	2024-10-28 16:12:53.407	25.3s	23.4s	136.9%	70.3 MB	3.8 GB	15 GB	2.3 GB
-8	83/02625b	3237881	hybrid_vc:assamble_process:SUB_SAMPLE_1 (Assemble with Canu - barcode05)	COMPLETED	0	2024-10-29 09:02:12.108	8m 12s	8m 10s	678.5%	9.7 GB	31.6 GB	24.8 GB	1.1 GB
-7	9c/a8f9c1	3257603	hybrid_vc:assamble_process:SUB_SAMPLE_1 (Assemble with Canu - barcode12)	FAILED	1	2024-10-29 09:10:23.926	3h 13m 23s	3h 13m 23s	-	-	-	-	-
+1	a4/cb82b6	2933780	hybrid_vc:pre_process:QC (Quality control RAW data)	CACHED	0	2024-11-04 10:07:43.786	1m 12s	1m 11s	52.5%	2.6 GB	71.9 GB	635.1 MB	302.4 MB
+2	6a/841dc8	3043748	hybrid_vc:pre_process:TRIMMING (prunning process)	CACHED	0	2024-11-04 10:08:55.676	8m 21s	8m 20s	696.7%	1.1 GB	13 GB	1.5 GB	960.1 MB
+3	a2/8149a2	3546365	hybrid_vc:assamble_process:SUB_SAMPLE (SUB SAMPLE TRYCYCLER FROM LONG READS)	CACHED	0	2024-11-04 10:17:16.965	1m 11s	49.5s	108.1%	69.5 MB	3.8 GB	11 GB	8.9 GB
+6	76/4894b1	1403564	hybrid_vc:assamble_process:SUB_SAMPLE_3 (Assemble with Raven - barcode12)	COMPLETED	0	2024-11-05 08:35:50.377	3h 27m 22s	3h 27m 16s	101.0%	16.3 GB	18.1 GB	4.4 GB	1.8 KB
+5	f4/b835d4	1843094	hybrid_vc:assamble_process:SUB_SAMPLE_1 (Assemble with Canu - barcode12)	COMPLETED	0	2024-11-05 12:03:12.901	4h 10m 41s	4h 10m 40s	980.9%	12.2 GB	32.9 GB	309.2 GB	9.1 GB
+4	ea/2b506c	3870378	hybrid_vc:assamble_process:SUB_SAMPLE_2 (ASSAMBLE FLY LONG READS barcode12)	COMPLETED	0	2024-11-05 16:13:54.353	46m 47s	46m 45s	100.3%	8.9 GB	9.6 GB	10.1 GB	3.1 GB

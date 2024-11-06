@@ -22,11 +22,12 @@ include { QC                                          }     from '../bin/qc/main
 include { TRIMMING                                    }     from '../bin/trimming/main'
 include { SUB_SAMPLE                                  }     from '../bin/assemble/trycycler/subsample_main'
 include { SUB_SAMPLE_1                                }     from '../bin/assemble/canu/main'
+include { SUB_SAMPLE_2                                }     from '../bin/assemble/fly/main'
+include { SUB_SAMPLE_3                                }     from '../bin/assemble/raven/main'
+include {                                             }     from '../bin///main'
 
 /*
 
-include { SUB_SAMPLE_2                                }     from '../bin/assemble/fly/main'
-include { SUB_SAMPLE_3                                }     from '../bin/assemble/raven/main'
 include { MERGE_ASSEMBLE                              }     from '../bin/assemble/main'
 include { POLISHING_1                                 }     from '../bin/assemble/main'
 include { CONSENSUM                                   }     from '../bin/assemble/main'
@@ -94,15 +95,40 @@ workflow assamble_process {
     reads_with_size_ch = subsample_trycycler_ch.join(genome_size_ch)
 
     sub_sample_1_canu_ch = SUB_SAMPLE_1(reads_with_size_ch)
-    
 
+    sub_sample_2_fly_ch = SUB_SAMPLE_2(reads_with_size_ch)
+
+    sub_sample_3_raven_ch = SUB_SAMPLE_3(reads_with_size_ch)
     
     /*
 
 
+        
     
-    sub_sample_2_fly_ch = SUB_SAMPLE_2(reads_with_size_ch)
-    sub_sample_3_raven_ch = SUB_SAMPLE_3(reads_with_size_ch)
+
+    
+
+    //POLISHING
+     // Determinar el número máximo de rondas de pulido
+    def max_rounds = params.min_mean_q <= 14 ? 8 : 5
+
+    // Canal inicial con ensamblaje y lecturas constantes para cada barcode
+    polished_ch = genome_ch.map { barcode_id, input_fasta -> tuple(barcode_id, input_fasta, input_reads) }
+
+    // Bucle de pulido
+    polished_ch = (1..max_rounds).inject(polished_ch) { ch, round ->
+        ch.map { barcode_id, input_fasta, input_reads -> 
+            tuple(barcode_id, input_fasta, input_reads, round) 
+        }
+        .set { round_input_ch }  // Actualiza el canal de entrada para cada ronda
+
+        POLISHING_ROUND(round_input_ch)
+            .map { barcode_id, polished_fasta -> tuple(barcode_id, polished_fasta, input_reads) }
+    }
+
+    // Al final, polished_ch tendrá el ensamblaje pulido final para cada barcode después del número especificado de rondas.
+    polished_ch.view()
+}
 
     
 

@@ -1,4 +1,4 @@
-process assemble_raven {
+process SUB_SAMPLE_3 {
     tag "Assemble with Raven - ${barcode_id}"
 
     input:
@@ -11,5 +11,6 @@ process assemble_raven {
     """
     mkdir -p raven_output_${barcode_id}
     raven ${reads_path} > raven_output_${barcode_id}/${barcode_id}_assembly.fasta
+    mv raven_output_${barcode_id}/${barcode_id}_assembly.fasta raven_output_${barcode_id}.fasta
     """
 }

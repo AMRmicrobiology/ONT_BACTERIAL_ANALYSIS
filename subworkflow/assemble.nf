@@ -23,10 +23,13 @@ Configuration environemnt:
 include { QC                                          }     from '../bin/qc/main'
 include { TRIMMING                                    }     from '../bin/trimming/main'
 include { SUB_SAMPLE_2 as a ASSEMBLE                  }     from '../bin/assemble/fly/main'
+
+
 /*
 
 
-
+include { AMR as POST_ANALYSIS_ABRICATE                       }     from '../bin/AMR/abricate/main'
+include { AMR_2 as POST_ANALYSIS_AMRFINDER                    }     from '../bin/AMR/AMRFinder/main'
 
 include { QUAST                                               }     from '../bin/qc/quast/main'
 include { MULTIQC                                             }     from '../bin/qc/multiqc/main' 
@@ -44,8 +47,7 @@ include { FILTER_VARIANTS as FILTER_VARIANTS_PARAM            }     from '../bin
 include { AGT                                                 }     from '../bin/anotations/main'
 include { DECOMPRESS_VCF                                      }     from '../bin/snpeff/main_2'
 include { SNPEFF                                              }     from '../bin/snpeff/main'
-include { AMR as POST_ANALYSIS_ABRICATE                       }     from '../bin/AMR/abricate/main'
-include { AMR_2 as POST_ANALYSIS_AMRFINDER                    }     from '../bin/AMR/AMRFinder/main'
+
 
 
 

@@ -1,5 +1,5 @@
-process SUB_SAMPLE_1 {
-    tag "ASSAMBLE FLY LONG READS"
+process SUB_SAMPLE_2 {
+    tag "ASSAMBLE FLY LONG READS ${barcode_id}"
 
     cache 'deep'
     
@@ -18,7 +18,10 @@ process SUB_SAMPLE_1 {
     script:
 
     """
-    flye --nano-raw ${barcode_file} --out-dir flye_output_${barcode_id} --genome-size ${genome_size}
-    """
+    # Paso 1: Eliminar IDs duplicados en las lecturas usando seqkit
+    seqkit rmdup -s -i ${barcode_file} -o dedup_${barcode_id}.fastq
 
+    # Paso 2: Ejecutar Flye usando el archivo sin duplicados
+    flye --nano-raw dedup_${barcode_id}.fastq --out-dir flye_output_${barcode_id} --genome-size ${genome_size}
+    """
 }
