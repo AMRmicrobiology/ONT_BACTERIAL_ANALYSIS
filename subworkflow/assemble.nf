@@ -21,6 +21,7 @@ include { TRIMMING                                      }     from '../bin/trimm
 include { SUB_SAMPLE_2 as ASSEMBLE                      }     from '../bin/assemble/fly/main'
 include { POLISHING_ROUND                               }     from '../bin/polishing/main'
 include { MEDAKA                                        }     from '../bin/assemble/medaka/main'
+include { AMR                                           }     from '../bin/AMR/abricate/main'
 /*
 
 
@@ -113,4 +114,7 @@ coverage_ch = fly_ch.info_cov
     }
     
     medaka_consensum_ch= MEDAKA(medaka_ch)
+    
+    amr_ch = AMR(medaka_consensum_ch.assemble_consenmun)
+
 }

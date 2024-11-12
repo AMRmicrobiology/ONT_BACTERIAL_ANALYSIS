@@ -7,7 +7,8 @@ process MEDAKA {
     tuple val(barcode_id), path(trimmed_reads), path(final_polishing_fasta)
 
     output:
-    path "medaka_output_${barcode_id}" 
+    path "medaka_output_${barcode_id}"
+    tuple val(barcode_id),path("medaka_output_${barcode_id}/consensus.fasta"), emit: assemble_consenmun
 
     script:
     """
