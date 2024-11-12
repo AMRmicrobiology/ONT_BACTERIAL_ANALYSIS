@@ -86,17 +86,6 @@ The number of rounds necessary is defined automatically based on several paramet
 </table>
 
 
-Resumen de los Parámetros para Establecer el Número de Rondas
-Parámetro	Herramienta	Umbral de Convergencia
-Error Rate	Medaka/QUAST	Cambio < 0.1% entre rondas
-N50/L50	QUAST	Cambio < 100 pb
-Completitud (BUSCO)	BUSCO	Cambio < 1% en genes completos
-Distinct Minimizers	Minimap2	Cambio < 0.1% en minimizadores
-Average Occurrences	Minimap2	Cambio < 0.01 en promedio
-Total Length of Matches	Minimap2	Cambio < 0.1%
-Tiempo de Procesamiento	Minimap2/Racon	Cambio < 5%
-Diferencia en Bases	diff/mummer	Cambio < 0.1% en bases modificadas
-
 
 ## COMAND LINE
 ```
