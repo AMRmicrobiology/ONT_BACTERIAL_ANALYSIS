@@ -44,9 +44,9 @@ The number of rounds necessary is defined automatically based on several paramet
 <table>
     <thead>
         <tr>
-            <th>Tool</th>
-            <th>Parameter</th>
-            <th>Convergence Threshold</th>
+            <th align= "center"> Tool</th>
+            <th align= "center"> Parameter</th>
+            <th align= "center"> Convergence Threshold</th>
         </tr>
     </thead>
     <tbody>
