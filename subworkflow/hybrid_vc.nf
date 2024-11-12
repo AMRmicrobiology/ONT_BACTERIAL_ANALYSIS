@@ -100,13 +100,8 @@ workflow assamble_process {
 
     sub_sample_3_raven_ch = SUB_SAMPLE_3(reads_with_size_ch)
     
+    
     /*
-
-
-        
-    
-
-    
 
     //POLISHING
      // Determinar el número máximo de rondas de pulido

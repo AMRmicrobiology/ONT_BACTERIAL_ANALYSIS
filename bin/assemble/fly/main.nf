@@ -12,7 +12,8 @@ process SUB_SAMPLE_2 {
 
     output:
 
-    path "flye_output_${barcode_id}/assembly.fasta"
+    tuple val(barcode_id),path("flye_output_${barcode_id}/assembly.fasta"), emit: fly_assambly_tuple
+    tuple val(barcode_id),path("flye_output_${barcode_id}/assembly_info.txt"), emit: info_cov
 
 
     script:

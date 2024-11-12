@@ -3,10 +3,6 @@ DSL2 channels
 */
 nextflow.enable.dsl=2
 
-checkInputParams()
-
-reference         = file("${params.reference}")
-
 log.info """\
 
 WGS - P A R A M E T R E S
@@ -20,16 +16,14 @@ Configuration environemnt:
 
 //Call all the sub-work
 
-include { QC                                          }     from '../bin/qc/main'
-include { TRIMMING                                    }     from '../bin/trimming/main'
-include { SUB_SAMPLE_2 as a ASSEMBLE                  }     from '../bin/assemble/fly/main'
-
-
+include { QC                                            }     from '../bin/qc/main'
+include { TRIMMING                                      }     from '../bin/trimming/main'
+include { SUB_SAMPLE_2 as ASSEMBLE                      }     from '../bin/assemble/fly/main'
+include { POLISHING_ROUND                               }     from '../bin/polishing/main'
+include { MEDAKA                                        }     from '../bin/assemble/medaka/main'
 /*
 
 
-include { AMR as POST_ANALYSIS_ABRICATE                       }     from '../bin/AMR/abricate/main'
-include { AMR_2 as POST_ANALYSIS_AMRFINDER                    }     from '../bin/AMR/AMRFinder/main'
 
 include { QUAST                                               }     from '../bin/qc/quast/main'
 include { MULTIQC                                             }     from '../bin/qc/multiqc/main' 
@@ -52,7 +46,7 @@ include { SNPEFF                                              }     from '../bin
 
 
 */
-workflow hybrid_vc {
+workflow assemble {
     preprocess_output = pre_process()
     assambleprocess_output = assamble_process(preprocess_output.trimming_ch)
      /*
@@ -83,8 +77,40 @@ workflow assamble_process {
                     .splitCsv(header: true)
                     .map { row -> tuple(row.barcode, row.genome_size as int) }
 
-    reads_with_size_ch = subsample_trycycler_ch.join(genome_size_ch)
+    reads_with_size_ch = trimming_ch.join(genome_size_ch)
 
-    sub_sample_1_canu_ch = ASSEMBLE(reads_with_size_ch)
+    fly_ch = ASSEMBLE(reads_with_size_ch)
 
+//POLISHING PROCESS
+//Porcesar el emit del assembly en fly para determinar numeros de polishing
+coverage_ch = fly_ch.info_cov
+    .map { barcode_id, info_file -> 
+        // Lee el archivo `assembly_info.txt` y extrae la cobertura
+        def cov_value = info_file
+            .text
+            .split("\n")  // Divide en líneas
+            .drop(1)      // Omite la cabecera
+            .collect { line -> line.split("\t")[2] as int }[0]  // Extrae la columna 'cov.' (índice 2) y convierte a int
+        tuple(barcode_id, cov_value)
+    }
+
+// Creacion de channel que combina los input para el procesamiento de polishing en relacion al coverage obtneido en fly 
+
+    polished_ch = trimming_ch
+        .join(fly_ch.fly_assambly_tuple)
+        .join(coverage_ch)
+        .map { barcode_id, trimmed_reads, assembly_fasta, cov_value -> 
+            def max_rounds = (cov_value <= 14) ? 8 : 5 //asignacion de numero de polishing ( nªround each raund inclue: minimap + racon )
+            tuple(barcode_id, trimmed_reads, assembly_fasta, max_rounds)
+        }
+
+    polished_ch_final = POLISHING_ROUND(polished_ch)
+
+    medaka_ch = trimming_ch
+    .join(polished_ch_final)
+    .map { barcode_id, trimmed_reads, final_polishing_fasta ->
+        tuple(barcode_id, trimmed_reads, final_polishing_fasta)
+    }
+    
+    medaka_consensum_ch= MEDAKA(medaka_ch)
 }

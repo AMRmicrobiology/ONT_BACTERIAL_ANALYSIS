@@ -18,7 +18,7 @@ Configuration environment:
 // Subworkflows 
 
 if (params.mode == 'assemble') {
-    include { assemble } from "$projectDir/subworkflow/assamble" 
+    include { assemble } from "$projectDir/subworkflow/assemble" 
 } else if (params.mode == 'hybrid_amr') {
     include { hybrid_amr } from "$projectDir/subworkflow/hybrid_amr"
 } else if (params.mode == 'hybrid_vc') {
