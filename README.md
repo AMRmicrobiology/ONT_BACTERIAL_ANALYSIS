@@ -23,19 +23,32 @@
 ## Pipeline summary:
 
 
-For a multiplex input must to add a file **genome_size.csv**  with size of each genome (bp) per barcode. :
+Create for a multiplex input must to add a file **genome_size.csv**  with size of each genome (bp) per barcode. :
 
 e.g
 ```
 barcode,genome_size
-01,3000000
-02,4500000
-03,5000000
-04,4000000
-05,3200000
-06,3500000
-
+barcode01,3000000
+barcode02,4500000
+barcode03,5000000
+barcode04,4000000
+barcode05,3200000
+barcode06,3500000
 ```
+
+
+### polishing process
+
+The number of rounds necessary is defined automatically based on several parameters, including error rate, N50/L50, coverage, Total Length of Matches, Average Occurrences, Distinct Minimizers, and processing time per round.
+
+
+## COMAND LINE
+```
+nextflow run main.nf --mode assemble --genome_size_file barcode_info.csv -profile <docker/singularity/conda>
+```
+
+--mode : assemble / hybrid_amr / hybrid_vc 
+-profile:
 
 
 ## REFERENCE
