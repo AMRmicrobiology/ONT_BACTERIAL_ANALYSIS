@@ -41,6 +41,62 @@ barcode06,3500000
 
 The number of rounds necessary is defined automatically based on several parameters, including error rate, N50/L50, coverage, Total Length of Matches, Average Occurrences, Distinct Minimizers, and processing time per round.
 
+<table>
+    <thead>
+        <tr>
+            <th>Tool</th>
+            <th>Parameter</th>
+            <th>Convergence Threshold</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan="4" align="center">Minimap2</td>
+            <td align="center">Distinct Minimizers</td>
+            <td align="center">Change < 0.1% in distinct minimizers</td>
+        </tr>
+        <tr>
+            <td align="center">Average Occurrences</td>
+            <td align="center">Change < 0.01 in average occurrences</td>
+        </tr>
+        <tr>
+            <td align="center">Total Length of Matches</td>
+            <td align="center">Change < 0.1%</td>
+        </tr>
+        <tr>
+            <td align="center">Processing Time</td>
+            <td align="center">	Change < 5%</td>
+        </tr>
+        <tr>
+            <td rowspan=1 align= "center"> RACON </td>
+            <td align= "center"> Processing Time </td>
+            <td align= "center"> Change < 5% </td>
+        </tr>
+        <tr>
+            <td rowspan=1 align= "center"> QUAST </td>
+            <td align= "center"> N50/L50 </td>
+            <td align= "center"> Change < 100 bp </td>
+        </tr>
+        <tr>
+            <td rowspan=1 align= "center"> BUSCO </td>
+            <td align= "center"> Completeness (BUSCO) </td>
+            <td align ="center">Change < 1% in complete genes </td>
+        </tr>
+    <t/body>
+</table>
+
+
+Resumen de los Parámetros para Establecer el Número de Rondas
+Parámetro	Herramienta	Umbral de Convergencia
+Error Rate	Medaka/QUAST	Cambio < 0.1% entre rondas
+N50/L50	QUAST	Cambio < 100 pb
+Completitud (BUSCO)	BUSCO	Cambio < 1% en genes completos
+Distinct Minimizers	Minimap2	Cambio < 0.1% en minimizadores
+Average Occurrences	Minimap2	Cambio < 0.01 en promedio
+Total Length of Matches	Minimap2	Cambio < 0.1%
+Tiempo de Procesamiento	Minimap2/Racon	Cambio < 5%
+Diferencia en Bases	diff/mummer	Cambio < 0.1% en bases modificadas
+
 
 ## COMAND LINE
 ```
