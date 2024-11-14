@@ -80,6 +80,7 @@ workflow assamble_process {
 
     reads_with_size_ch = trimming_ch.join(genome_size_ch)
 
+    reads_with_size_ch.view()
     fly_ch = ASSEMBLE(reads_with_size_ch)
 
 //POLISHING PROCESS
