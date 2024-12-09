@@ -24,8 +24,6 @@ include { SUB_SAMPLE                                  }     from '../bin/assembl
 include { SUB_SAMPLE_1                                }     from '../bin/assemble/canu/main'
 include { SUB_SAMPLE_2                                }     from '../bin/assemble/fly/main'
 include { SUB_SAMPLE_3                                }     from '../bin/assemble/raven/main'
-include {                                             }     from '../bin///main'
-
 /*
 
 include { MERGE_ASSEMBLE                              }     from '../bin/assemble/main'
