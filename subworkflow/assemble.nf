@@ -118,8 +118,8 @@ coverage_ch = fly_ch.info_cov
     
     medaka_consensum_ch= MEDAKA(medaka_ch)
 
-    quast_ch = QUAST(medaka_ch.assemble_consenmun)
+    quast_ch = QUAST(medaka_consensum_ch.assemble_medaka)
 
-    amr_ch = AMR(medaka_consensum_ch.assemble_consenmun)
-    mlst_ch = MLST(medaka_consensum_ch.assemble_consenmun)
+    amr_ch = AMR(medaka_consensum_ch.assemble_medaka)
+    mlst_ch = MLST(medaka_consensum_ch.assemble_medaka)
 }
