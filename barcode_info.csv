@@ -1,2 +1,2 @@
-barcode,genome_size
-RBT12,6300000
+barcode,genome_size,sample_code
+barcode12,6300000,RMT12
