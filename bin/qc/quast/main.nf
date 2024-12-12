@@ -1,6 +1,9 @@
 process QUAST {
     tag "QC_ASSEMBLE"
     
+    container "$params.quast.docker"
+
+
     publishDir "${params.outdir}/5-assemble/QUAST", mode: 'copy'
     
     input:

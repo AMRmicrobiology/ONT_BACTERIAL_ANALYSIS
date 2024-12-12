@@ -4,6 +4,7 @@ process CONCILIACION_ASSEMBLY {
 
 
     input:
+    
 
 
 
@@ -12,7 +13,7 @@ process CONCILIACION_ASSEMBLY {
 
 
     script:
-    
+
     """
     trycycler reconcile \
         --clusters clustering_barcode12/cluster_001/1_contigs \

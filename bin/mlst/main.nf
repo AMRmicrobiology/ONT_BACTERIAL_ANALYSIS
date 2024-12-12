@@ -1,6 +1,8 @@
 process MLST {
     tag "MLST-annotation process ${sample_id}"
     
+    container "$params.quast.docker"
+    
     publishDir "${params.outdir}/4-mlst", mode: 'copy'
 
     input:

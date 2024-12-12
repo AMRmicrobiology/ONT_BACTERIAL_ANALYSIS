@@ -1,3 +1,9 @@
 task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	peak_vmem	rchar	wchar
-1	9f/4f4b16	1260975	assemble:pre_process:QC (Quality control RAW data)	COMPLETED	0	2024-12-12 11:27:33.477	1m 14s	1m 12s	46.5%	2.2 GB	62.7 GB	609 MB	288.5 MB
-2	3b/f8a63f	1266779	assemble:pre_process:TRIMMING (prunning process)	COMPLETED	0	2024-12-12 11:28:47.791	5m 34s	5m 33s	826.1%	1.1 GB	13 GB	1.5 GB	972.4 MB
+1	9f/4f4b16	1260975	assemble:pre_process:QC (Quality control RAW data)	CACHED	0	2024-12-12 11:27:33.477	1m 14s	1m 12s	46.5%	2.2 GB	62.7 GB	609 MB	288.5 MB
+2	3b/f8a63f	1266779	assemble:pre_process:TRIMMING (prunning process)	CACHED	0	2024-12-12 11:28:47.791	5m 34s	5m 33s	826.1%	1.1 GB	13 GB	1.5 GB	972.4 MB
+3	8b/243923	1276161	assemble:assamble_process:ASSEMBLE (ASSAMBLE FLY LONG READS barcode12)	CACHED	0	2024-12-12 11:34:22.430	38m 49s	38m 48s	100.0%	9 GB	9.6 GB	6 GB	2.9 GB
+4	86/03fb24	1329693	assemble:assamble_process:POLISHING_ROUND (Polishing barcode12 for 5 rounds)	CACHED	0	2024-12-12 12:13:11.634	24m 19s	24m 18s	126.6%	798.9 MB	1017.3 MB	7.2 GB	2.4 GB
+5	9d/cb89b8	1356198	assemble:assamble_process:MEDAKA (Medaka Consensus for barcode12)	CACHED	0	2024-12-12 12:37:30.573	5m 5s	5m 4s	200.4%	7.4 GB	10.4 GB	2.1 GB	1.2 GB
+6	7e/e29441	1375066	assemble:assamble_process:AMR (ABRICATE PROCESS)	CACHED	0	2024-12-12 12:49:25.363	48s	47.3s	99.9%	93.7 MB	140.2 MB	58.4 MB	26.8 MB
+8	ba/b23a26	1385716	assemble:assamble_process:QUAST (QC_ASSEMBLE)	COMPLETED	0	2024-12-12 12:57:12.551	4.6s	3.9s	382.3%	108.6 MB	6.6 GB	136.2 MB	11 MB
+7	2c/018440	1386382	assemble:assamble_process:MLST (MLST-annotation process barcode12)	COMPLETED	0	2024-12-12 12:57:17.198	5s	4.3s	59.9%	224.7 MB	4.9 GB	15.7 MB	7.4 MB
