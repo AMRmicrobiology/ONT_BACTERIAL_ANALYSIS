@@ -1,19 +1,22 @@
 process MERGE_ASSEMBLE {
-    tag "Merge assemble using Trycyler"
+    tag "Merge assemble using Trycyler ${barcode_id} "
 
     container "$params.trycyler.docker"
 
     input:
-    tuple val(barcode_id), path(barcode_canu_file), path(barcode_fly_file), path(barcode_raven_file), path(barcodefile_gz)
+    tuple val(barcode_id), path(barcodefile), val(genome_size), path(assembly_canu_file), path(fly_assambly_tuple), path(raven_aseembly_file)
 
     output:
-    path("clustering/")
+    path "clustering_${barcode_id}/", emit: merge_assemblies_trycycler
 
 
     script:
     """
-    trycycler cluster --assemblies ${barcode_canu_file}, ${barcode_fly_file}, ${barcode_raven_file}\
-        --reads ${barcodefile_gz}\
-        --out_dir clustering
+    trycycler cluster \
+        -a ${assembly_canu_file} \
+           ${fly_assambly_tuple} \
+           ${raven_aseembly_file} \
+        -r ${barcodefile} \
+        -o clustering_${barcode_id}
     """
 }

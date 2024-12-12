@@ -1,5 +1,8 @@
 task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	peak_vmem	rchar	wchar
-1	99/df65e0	2889793	hybrid_vc:pre_process:QC (Quality control RAW data)	COMPLETED	0	2024-12-09 16:49:49.191	37.1s	35.8s	88.9%	2.2 GB	62.6 GB	610.7 MB	288.7 MB
-2	01/135777	2896680	hybrid_vc:pre_process:TRIMMING (prunning process)	COMPLETED	0	2024-12-09 16:50:26.381	5m 32s	5m 31s	796.7%	1.1 GB	13 GB	1.5 GB	972.4 MB
-3	3f/5d0952	2932257	hybrid_vc:assamble_process:SUB_SAMPLE (SUB SAMPLE TRYCYCLER FROM LONG READS)	COMPLETED	0	2024-12-09 16:55:58.447	1m 2s	42.7s	116.0%	245.8 MB	3.8 GB	11.4 GB	9.5 GB
-6	41/60e945	2939405	hybrid_vc:assamble_process:SUB_SAMPLE_1 (Assemble with Canu - barcode12)	COMPLETED	0	2024-12-09 16:57:00.189	2h 43m 45s	2h 43m 44s	1235.4%	16.2 GB	32.3 GB	435.5 GB	10.6 GB
+1	99/df65e0	2889793	hybrid_vc:pre_process:QC (Quality control RAW data)	CACHED	0	2024-12-09 16:49:49.191	37.1s	35.8s	88.9%	2.2 GB	62.6 GB	610.7 MB	288.7 MB
+2	01/135777	2896680	hybrid_vc:pre_process:TRIMMING (prunning process)	CACHED	0	2024-12-09 16:50:26.381	5m 32s	5m 31s	796.7%	1.1 GB	13 GB	1.5 GB	972.4 MB
+3	3f/5d0952	2932257	hybrid_vc:assamble_process:SUB_SAMPLE (SUB SAMPLE TRYCYCLER FROM LONG READS)	CACHED	0	2024-12-09 16:55:58.447	1m 2s	42.7s	116.0%	245.8 MB	3.8 GB	11.4 GB	9.5 GB
+4	be/7066cc	3988300	hybrid_vc:assamble_process:SUB_SAMPLE_3 (Assemble with Raven - barcode12)	CACHED	0	2024-12-09 19:40:45.544	7h 13m 18s	7h 13m 17s	100.5%	15.8 GB	17.7 GB	4.7 GB	137.7 KB
+5	21/d128e0	879223	hybrid_vc:assamble_process:SUB_SAMPLE_1 (Assemble with Canu - barcode12)	CACHED	0	2024-12-10 14:53:21.772	3h 17m 33s	3h 17m 30s	1165.5%	16.2 GB	32.8 GB	435.6 GB	10.7 GB
+6	98/5a5301	2264471	hybrid_vc:assamble_process:SUB_SAMPLE_2 (ASSAMBLE FLY LONG READS barcode12)	CACHED	0	2024-12-10 02:54:04.009	36m 17s	36m 16s	100.4%	9 GB	9.5 GB	10.2 GB	2.9 GB
+7	c4/06c043	961994	hybrid_vc:assamble_process:MERGE_ASSEMBLE (Merge assemble using Trycyler barcode12)	COMPLETED	0	2024-12-11 00:26:05.922	4m 37s	4m 34s	1368.5%	3.1 GB	7.7 GB	19.5 GB	421.4 MB

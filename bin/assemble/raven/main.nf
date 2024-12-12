@@ -5,7 +5,7 @@ process SUB_SAMPLE_3 {
     tuple val(barcode_id), path(reads_path), val(genome_size)
 
     output:
-    tuple val(barcode_id), path("raven_output_${barcode_id}.fasta")
+    tuple val(barcode_id), path("raven_output_${barcode_id}.fasta"), emit: raven_aseembly_file
 
     script:
     """

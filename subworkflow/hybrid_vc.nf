@@ -24,9 +24,9 @@ include { SUB_SAMPLE                                  }     from '../bin/assembl
 include { SUB_SAMPLE_1                                }     from '../bin/assemble/canu/main'
 include { SUB_SAMPLE_2                                }     from '../bin/assemble/fly/main'
 include { SUB_SAMPLE_3                                }     from '../bin/assemble/raven/main'
+include { MERGE_ASSEMBLE                              }     from '../bin/assemble/trycycler/merge_subsample'
 /*
 
-include { MERGE_ASSEMBLE                              }     from '../bin/assemble/main'
 include { POLISHING_1                                 }     from '../bin/assemble/main'
 include { CONSENSUM                                   }     from '../bin/assemble/main'
 include { POLISHING_2                                 }     from '../bin/assemble/main'
@@ -98,8 +98,15 @@ workflow assamble_process {
 
     sub_sample_3_raven_ch = SUB_SAMPLE_3(reads_with_size_ch)
     
-    
+    trycyler_input_ch = reads_with_size_ch
+        .join(sub_sample_1_canu_ch.assembly_canu_file)
+        .join(sub_sample_2_fly_ch.fly_assambly_tuple)
+        .join(sub_sample_3_raven_ch.raven_aseembly_file)
+
+    trycycler_ch = MERGE_ASSEMBLE(trycyler_input_ch)
     /*
+
+
 
     //POLISHING
      // Determinar el número máximo de rondas de pulido

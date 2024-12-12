@@ -22,12 +22,14 @@ include { SUB_SAMPLE_2 as ASSEMBLE                      }     from '../bin/assem
 include { POLISHING_ROUND                               }     from '../bin/polishing/main'
 include { MEDAKA                                        }     from '../bin/assemble/medaka/main'
 include { AMR                                           }     from '../bin/AMR/abricate/main'
+include { QUAST                                         }     from '../bin/qc/quast/main'
 include { MLST                                          }     from '../bin/mlst/main'
+
 /*
 
 
 
-include { QUAST                                               }     from '../bin/qc/quast/main'
+
 include { MULTIQC                                             }     from '../bin/qc/multiqc/main' 
 include { PROKKA                                              }     from '../bin/anotations/prokka/main'
 include { BAKTA                                               }     from '../bin/anotations/bakta/main'
@@ -115,7 +117,9 @@ coverage_ch = fly_ch.info_cov
     }
     
     medaka_consensum_ch= MEDAKA(medaka_ch)
-    
+
+    quast_ch = QUAST(medaka_ch.assemble_consenmun)
+
     amr_ch = AMR(medaka_consensum_ch.assemble_consenmun)
     mlst_ch = MLST(medaka_consensum_ch.assemble_consenmun)
 }
