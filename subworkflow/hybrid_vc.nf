@@ -88,7 +88,7 @@ workflow assamble_process {
     genome_size_ch = Channel
                         .fromPath(params.genome_size_file)
                         .splitCsv(header: true)
-                        .map { row -> tuple(row.barcode, row.genome_size as int) }
+                        .map { row -> tuple(row.barcode, row.genome_size as int, row.sample_code) }
 
     reads_with_size_ch = subsample_trycycler_ch.join(genome_size_ch)
 

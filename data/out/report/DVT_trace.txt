@@ -1,9 +1,7 @@
 task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	peak_vmem	rchar	wchar
-1	6c/2673de	1655329	assemble:pre_process:QC (Quality control RAW data)	CACHED	0	2024-12-12 17:37:09.567	47.3s	45.3s	75.5%	1.8 GB	53.1 GB	614.3 MB	288.8 MB
-2	9e/485026	1679753	assemble:pre_process:TRIMMING (prunning process)	CACHED	0	2024-12-12 17:37:56.964	7m 17s	7m 16s	730.5%	1.1 GB	13 GB	1.5 GB	972.4 MB
-3	99/b8c5b1	1851303	assemble:assamble_process:ASSEMBLE (ASSAMBLE FLY LONG READS barcode12)	COMPLETED	0	2024-12-12 17:48:57.533	36m 48s	36m 47s	100.2%	9 GB	9.5 GB	6 GB	2.9 GB
-4	23/5671c4	2148635	assemble:assamble_process:POLISHING_ROUND (Polishing barcode12 for 5 rounds)	COMPLETED	0	2024-12-12 18:25:45.728	24m 37s	24m 36s	126.6%	801 MB	1017.3 MB	7.2 GB	2.4 GB
-5	96/b03c5f	2171089	assemble:assamble_process:MEDAKA (Medaka Consensus for barcode12)	COMPLETED	0	2024-12-12 18:50:22.888	4m 37s	4m 36s	204.8%	7 GB	10 GB	2.1 GB	1.2 GB
-6	09/59ca72	2179879	assemble:assamble_process:AMR (ABRICATE PROCESS)	COMPLETED	0	2024-12-12 18:55:00.265	46.8s	45.8s	98.9%	95 MB	140.2 MB	58.4 MB	26.8 MB
-7	15/4d70b5	2182733	assemble:assamble_process:QUAST (QC_ASSEMBLE)	COMPLETED	0	2024-12-12 18:55:47.057	7s	6.2s	260.4%	155 MB	6.6 GB	136.2 MB	11 MB
-8	89/afc374	2183571	assemble:assamble_process:MLST (MLST-annotation process barcode12)	COMPLETED	0	2024-12-12 18:55:54.026	4.7s	4.1s	65.2%	226.6 MB	4.9 GB	15.7 MB	7.4 MB
+1	43/28f4ec	2392921	hybrid_vc:pre_process:QC (Quality control RAW data)	CACHED	0	2024-12-13 11:04:05.429	38s	37.1s	88.5%	1.8 GB	53 GB	607.4 MB	288.5 MB
+2	11/93e97a	2396969	hybrid_vc:pre_process:TRIMMING (prunning process)	CACHED	0	2024-12-13 11:04:43.499	5m 57s	5m 56s	785.2%	1.1 GB	13 GB	1.5 GB	972.4 MB
+3	82/05c165	2406964	hybrid_vc:assamble_process:SUB_SAMPLE (SUB SAMPLE TRYCYCLER FROM LONG READS)	CACHED	0	2024-12-13 11:10:40.258	1m 54s	42.3s	118.0%	241.4 MB	3.8 GB	11.4 GB	9.5 GB
+6	9d/c7157a	2671249	hybrid_vc:assamble_process:SUB_SAMPLE_1 (Assemble with Canu - barcode12)	COMPLETED	0	2024-12-13 13:35:38.349	3h 34m 29s	3h 32m 26s	1073.9%	15.9 GB	32.9 GB	433.1 GB	10.6 GB
+4	1d/92263b	3498581	hybrid_vc:assamble_process:SUB_SAMPLE_3 (Assemble with Raven - barcode12)	COMPLETED	0	2024-12-13 17:10:07.611	8h 3m 48s	8h 3m 43s	95.8%	16.9 GB	19.3 GB	4.7 GB	137.7 KB
+5	7b/ad42c6	3633272	hybrid_vc:assamble_process:SUB_SAMPLE_2 (ASSAMBLE FLY LONG READS RMT12)	COMPLETED	0	2024-12-14 01:13:57.146	36m 9s	36m 7s	99.7%	9 GB	9.6 GB	10.2 GB	2.9 GB

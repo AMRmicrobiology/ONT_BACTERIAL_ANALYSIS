@@ -14,6 +14,7 @@ process MLST {
 
     script:
     """
+
     mlst --threads ${task.cpus} --json ${contigs.baseName}.mlst.json ${contigs} > ${contigs.baseName}.mlst.tab
     """
 }

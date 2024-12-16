@@ -8,7 +8,6 @@ process MERGE_ASSEMBLE {
 
     output:
     path "clustering_${barcode_id}/", emit: merge_assemblies_trycycler
-    tuple val(barcode_id), path()
 
 
     script:
