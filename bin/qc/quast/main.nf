@@ -7,14 +7,14 @@ process QUAST {
     publishDir "${params.outdir}/5-assemble/QUAST", mode: 'copy'
     
     input:
-    tuple val(barcode_id), path(consensus)
+    tuple val(sample_code), path(consensus)
 
     output:
-    tuple val(barcode_id), path("quast_result_${barcode_id}")
+    tuple val(sample_code), path("quast_result_${sample_code}")
 
     script:
 
     """
-    quast.py -o quast_result_${barcode_id} ${consensus}
+    quast.py -o quast_result_${sample_code} ${consensus}
     """
 }

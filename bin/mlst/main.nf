@@ -6,7 +6,7 @@ process MLST {
     publishDir "${params.outdir}/4-mlst", mode: 'copy'
 
     input:
-    tuple val(sample_id), path(contigs)
+    tuple val(sample_code), path(assembly_file)
 
     output:
     path("*.mlst.tab"), emit: 'tab'
@@ -15,6 +15,6 @@ process MLST {
     script:
     """
 
-    mlst --threads ${task.cpus} --json ${contigs.baseName}.mlst.json ${contigs} > ${contigs.baseName}.mlst.tab
+    mlst --threads ${task.cpus} --json ${sample_code}.mlst.json ${assembly_file} > ${sample_code}.mlst.tab
     """
 }
