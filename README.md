@@ -68,12 +68,12 @@ The optimal number of polishing rounds is determined automatically using the CAR
             <td align="center">	Total execution time per round (Racon or Minimap2), change < 5%</td>
         </tr>
         <tr>
-            <td rowspan=1 align= "center"> RACON </td>
+            <td rowspan="1" align= "center"> RACON </td>
             <td align= "center"> Processing Time </td>
             <td align= "center"> Change < 5% </td>
         </tr>
         <tr>
-            <td rowspan=1 align= "center"> QUAST </td>
+            <td rowspan="2" align= "center"> QUAST </td>
             <td align= "center"> N50/L50 </td>
             <td align= "center"> Minimum contig length that covers 50% of the assembly, change < 100 bp </td>
         </tr>
@@ -82,7 +82,7 @@ The optimal number of polishing rounds is determined automatically using the CAR
             <td align="center">	Error rate in the sequence after each polishing round </td>
         </tr>
         <tr>
-            <td rowspan=1 align= "center"> BUSCO </td>
+            <td rowspan="1" align= "center"> BUSCO </td>
             <td align= "center"> Completeness (BUSCO) </td>
             <td align ="center"> Change < 1% in complete genes </td>
         </tr>
