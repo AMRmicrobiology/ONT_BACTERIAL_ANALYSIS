@@ -73,11 +73,12 @@ The optimal number of polishing rounds is determined automatically using the CAR
             <td align= "center"> Change < 5% </td>
         </tr>
         <tr>
-            <td rowspan="2" align= "center"> QUAST </td>
+            <td rowspan="1" align= "center"> QUAST </td>
             <td align= "center"> N50/L50 </td>
             <td align= "center"> Minimum contig length that covers 50% of the assembly, change < 100 bp </td>
         </tr>
         <tr>
+            <td rowspan="1" align= "center"> QUAST/MEDAKA </td>
             <td align="center"> ErrorRate </td>
             <td align="center">	Error rate in the sequence after each polishing round </td>
         </tr>
