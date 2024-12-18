@@ -29,9 +29,7 @@ workflow assemble {
     preprocess_output = pre_process()
     
     assambleprocess_output = assamble_process(preprocess_output.trimming_ch)
-     /*
     amrprocess_output = workflow_amr( preprocess_output.contigs_ch)
-    */
 }
 
 workflow pre_process {

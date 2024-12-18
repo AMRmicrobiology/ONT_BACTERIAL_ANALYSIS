@@ -39,48 +39,58 @@ barcode06,3500000
 
 ### polishing process
 
-The number of rounds necessary is defined automatically based on several parameters, including error rate, N50/L50, coverage, Total Length of Matches, Average Occurrences, Distinct Minimizers, and processing time per round.
+The optimal number of polishing rounds is determined automatically using the CART algorithm. The prediction is based on multiple parameters, including error rate, N50/L50, genome coverage, Total Length of Matches, Average Occurrences, Distinct Minimizers, and processing time per round.
 
 <table>
     <thead>
         <tr>
-            <th align= "center"> Tool</th>
-            <th align= "center"> Parameter</th>
-            <th align= "center"> Convergence Threshold</th>
+            <th align= "center"> Source </th>
+            <th align= "center"> Parameter </th>
+            <th align= "center"> Description </th>
         </tr>
     </thead>
     <tbody>
         <tr>
-            <td rowspan="4" align="center">Minimap2</td>
-            <td align="center">Distinct Minimizers</td>
-            <td align="center">Change < 0.1% in distinct minimizers</td>
+            <td rowspan="4" align="center">Minimap2 </td>
+            <td align="center">DistinctMinimizers </td>
+            <td align="center">Number of unique minimizers found (Minimap2 value),change < 0.1% in distinct minimizers </td>
         </tr>
         <tr>
-            <td align="center">Average Occurrences</td>
-            <td align="center">Change < 0.01 in average occurrences</td>
+            <td align="center">AverageOccurrences </td>
+            <td align="center">Average occurrences of minimizers (Minimap2),change < 0.01 in average occurrences </td>
         </tr>
         <tr>
-            <td align="center">Total Length of Matches</td>
-            <td align="center">Change < 0.1%</td>
+            <td align="center">TotalLengthMatches </td>
+            <td align="center">Total length of aligned matches,change < 0.1% </td>
         </tr>
         <tr>
-            <td align="center">Processing Time</td>
-            <td align="center">	Change < 5%</td>
+            <td align="center">ProcessingTime </td>
+            <td align="center">	Total execution time per round (Racon or Minimap2), change < 5%</td>
         </tr>
         <tr>
-            <td rowspan=1 align= "center"> RACON </td>
+            <td rowspan="1" align= "center"> RACON </td>
             <td align= "center"> Processing Time </td>
             <td align= "center"> Change < 5% </td>
         </tr>
         <tr>
-            <td rowspan=1 align= "center"> QUAST </td>
+            <td rowspan="1" align= "center"> QUAST </td>
             <td align= "center"> N50/L50 </td>
-            <td align= "center"> Change < 100 bp </td>
+            <td align= "center"> Minimum contig length that covers 50% of the assembly, change < 100 bp </td>
         </tr>
         <tr>
-            <td rowspan=1 align= "center"> BUSCO </td>
+            <td rowspan="1" align= "center"> QUAST/MEDAKA </td>
+            <td align="center"> ErrorRate </td>
+            <td align="center">	Error rate in the sequence after each polishing round </td>
+        </tr>
+        <tr>
+            <td rowspan="1" align= "center"> BUSCO </td>
             <td align= "center"> Completeness (BUSCO) </td>
-            <td align ="center">Change < 1% in complete genes </td>
+            <td align ="center"> Change < 1% in complete genes </td>
+        </tr>
+        <tr>
+            <td rowspan=1 align= "center"> Target Value </td>
+            <td align= "center"> Optional Rounds </td>
+            <td align ="center"> Optimal number of rounds needed to achieve convergence </td>
         </tr>
     <t/body>
 </table>
