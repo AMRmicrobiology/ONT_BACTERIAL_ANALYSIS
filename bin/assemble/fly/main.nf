@@ -9,8 +9,8 @@ process SUB_SAMPLE_2 {
 
     output:
 
-    tuple val(barcode_id),path("flye_output_${sample_code}/assembly.fasta"), emit: fly_assambly_tuple
-    tuple val(barcode_id),path("flye_output_${sample_code}/assembly_info.txt"), emit: info_cov
+    tuple val(sample_code),path("flye_output_${sample_code}/assembly.fasta"), emit: fly_assambly_tuple
+    tuple val(sample_code),path("flye_output_${sample_code}/assembly_info.txt"), emit: info_cov
 
     script:
 

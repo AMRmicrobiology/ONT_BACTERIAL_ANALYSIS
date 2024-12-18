@@ -25,33 +25,9 @@ include { AMR                                           }     from '../bin/AMR/a
 include { QUAST                                         }     from '../bin/qc/quast/main'
 include { MLST                                          }     from '../bin/mlst/main'
 
-/*
-
-
-
-
-include { MULTIQC                                             }     from '../bin/qc/multiqc/main' 
-include { PROKKA                                              }     from '../bin/anotations/prokka/main'
-include { BAKTA                                               }     from '../bin/anotations/bakta/main'
-include { BUILD_INDEX_1                                       }     from '../bin/bowtie/index/main_bwa'
-include { BUILD_INDEX as PERSONAL_GENOME_INDEX                }     from '../bin/bowtie/index/main'
-include { PERSONAL_GENOME_MAPPING                             }     from '../bin/bowtie/mapping/main'
-include { MARKDUPLICATE                                       }     from '../bin/gatk/picard/markduplicate/main'
-include { ADDORREPLACE                                        }     from '../bin/gatk/picard/addorreplace/main'
-include { HAPLOTYPECALLER                                     }     from '../bin/gatk/haplotype/main'
-include { GENOTYPE as GENOTYPE_ANALYSIS                       }     from '../bin/gatk/genotype/main'
-include { ALIGN as NORMALICE_WILDTYPE                         }     from '../bin/gatk/Filter/align'
-include { FILTER_VARIANTS as FILTER_VARIANTS_PARAM            }     from '../bin/gatk/Filter/main'
-include { AGT                                                 }     from '../bin/anotations/main'
-include { DECOMPRESS_VCF                                      }     from '../bin/snpeff/main_2'
-include { SNPEFF                                              }     from '../bin/snpeff/main'
-
-
-
-
-*/
 workflow assemble {
     preprocess_output = pre_process()
+    
     assambleprocess_output = assamble_process(preprocess_output.trimming_ch)
      /*
     amrprocess_output = workflow_amr( preprocess_output.contigs_ch)
@@ -77,9 +53,9 @@ workflow assamble_process {
     main:
     
     genome_size_ch = Channel
-                    .fromPath(params.genome_size_file)
-                    .splitCsv(header: true)
-                    .map { row -> tuple(row.barcode, row.genome_size as int, row.sample_code) }
+                        .fromPath(params.genome_size_file)
+                        .splitCsv(header: true)
+                        .map { row -> tuple(row.barcode, row.genome_size as int, row.sample_code) }
 
     reads_with_size_ch = trimming_ch.join(genome_size_ch)
 
@@ -98,15 +74,17 @@ coverage_ch = fly_ch.info_cov
         tuple(sample_code, cov_value)
     }
 
+
 // Creacion de channel que combina los input para el procesamiento de polishing en relacion al coverage obtneido en fly 
 
-    polished_ch = trimming_ch
+    polished_ch = reads_with_size_ch
         .join(fly_ch.fly_assambly_tuple)
         .join(coverage_ch)
         .map { sample_code, trimmed_reads, assembly_fasta, cov_value -> 
             def max_rounds = (cov_value <= 14) ? 8 : 5 //asignacion de numero de polishing ( nªround each raund inclue: minimap + racon )
             tuple(sample_code, trimmed_reads, assembly_fasta, max_rounds)
         }
+    polished_ch.view()
 
     polished_ch_final = POLISHING_ROUND(polished_ch)
 
@@ -122,4 +100,5 @@ coverage_ch = fly_ch.info_cov
 
     amr_ch = AMR(medaka_consensum_ch.assemble_medaka)
     mlst_ch = MLST(medaka_consensum_ch.assemble_medaka)
+
 }

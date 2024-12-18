@@ -10,7 +10,7 @@ process MEDAKA {
 
     output:
     path "medaka_output_${sample_code}"
-    tuple val(sample_code), path("medaka_output_${sample_code}/${sample_code}_consensus.fasta"), emit: assemble_medaka
+    tuple val(sample_code), path("${sample_code}_consensus.fasta"), emit: assemble_medaka
 
     script:
     """
@@ -18,6 +18,6 @@ process MEDAKA {
 
     medaka_consensus -i ${trimmed_reads} -d ${final_polishing_fasta} -o medaka_output_${sample_code} -t 2 --bacteria
 
-    mv medaka_output_${sample_code}/consensus.fasta medaka_output_${sample_code}/${sample_code}_consensus.fasta
+    mv medaka_output_${sample_code}/consensus.fasta ${sample_code}_consensus.fasta
     """
 }

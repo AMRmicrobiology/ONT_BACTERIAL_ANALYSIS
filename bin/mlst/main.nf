@@ -14,7 +14,6 @@ process MLST {
 
     script:
     """
-
     mlst --threads ${task.cpus} --json ${sample_code}.mlst.json ${assembly_file} > ${sample_code}.mlst.tab
     """
 }
