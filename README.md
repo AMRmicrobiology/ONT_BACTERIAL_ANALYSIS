@@ -39,7 +39,7 @@ barcode06,3500000
 
 ### polishing process
 
-The number of rounds necessary is defined automatically based on several parameters, including error rate, N50/L50, coverage, Total Length of Matches, Average Occurrences, Distinct Minimizers, and processing time per round.
+The optimal number of polishing rounds is determined automatically using the CART algorithm. The prediction is based on multiple parameters, including error rate, N50/L50, genome coverage, Total Length of Matches, Average Occurrences, Distinct Minimizers, and processing time per round.
 
 <table>
     <thead>
