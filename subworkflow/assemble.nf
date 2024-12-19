@@ -72,15 +72,18 @@ coverage_ch = fly_ch.info_cov
 
 
 // Creacion de channel que combina los input para el procesamiento de polishing en relacion al coverage obtneido en fly 
+    sample_fixe = reads_with_size_ch.map { tupla ->
+        def pathread = tupla [1]
+        def sample_code = tupla [3]
+        return tuple(sample_code, pathread)}
 
-    polished_ch = reads_with_size_ch
+    polished_ch = sample_fixe
         .join(fly_ch.fly_assambly_tuple)
         .join(coverage_ch)
         .map { sample_code, trimmed_reads, assembly_fasta, cov_value -> 
             def max_rounds = (cov_value <= 14) ? 8 : 5 //asignacion de numero de polishing ( nªround each raund inclue: minimap + racon )
             tuple(sample_code, trimmed_reads, assembly_fasta, max_rounds)
         }
-    polished_ch.view()
 
     polished_ch_final = POLISHING_ROUND(polished_ch)
 
