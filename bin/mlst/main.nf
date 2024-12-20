@@ -1,5 +1,5 @@
 process MLST {
-    tag "MLST-annotation process ${sample_id}"
+    tag "MLST-annotation process ${sample_code}"
     
     container "$params.quast.docker"
     
