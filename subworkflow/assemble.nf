@@ -87,12 +87,12 @@ coverage_ch = fly_ch.info_cov
 
     polished_ch_final = POLISHING_ROUND(polished_ch)
 
-    medaka_ch = trimming_ch
+    medaka_ch = sample_fixe
     .join(polished_ch_final)
     .map { sample_code, trimmed_reads, final_polishing_fasta ->
         tuple(sample_code, trimmed_reads, final_polishing_fasta)
     }
-    
+   
     medaka_consensum_ch= MEDAKA(medaka_ch)
 
     quast_ch = QUAST(medaka_consensum_ch.assemble_medaka)
