@@ -1,5 +1,5 @@
 process MEDAKA {
-    tag "Medaka Consensus for ${barcode_id}"
+    tag "Medaka Consensus for ${sample_code}"
 
     container "$params.medaka.docker"
 
