@@ -22,6 +22,7 @@ include { SUB_SAMPLE_2 as ASSEMBLE                      }     from '../bin/assem
 include { POLISHING_ROUND                               }     from '../bin/polishing/main'
 include { MEDAKA                                        }     from '../bin/assemble/medaka/main'
 include { AMR                                           }     from '../bin/AMR/abricate/main'
+include { AMR_2                                         }     from '../bin/AMR/resfinder/main'
 include { QUAST                                         }     from '../bin/qc/quast/main'
 include { MLST                                          }     from '../bin/mlst/main'
 
@@ -98,6 +99,7 @@ coverage_ch = fly_ch.info_cov
     quast_ch = QUAST(medaka_consensum_ch.assemble_medaka)
 
     amr_ch = AMR(medaka_consensum_ch.assemble_medaka)
+    amr_2_ch = AMR_2(medaka_consensum_ch.assemble_medaka)
     mlst_ch = MLST(medaka_consensum_ch.assemble_medaka)
 
 }
