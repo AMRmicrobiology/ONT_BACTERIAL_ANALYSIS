@@ -21,7 +21,22 @@ process MERGE_ASSEMBLE {
         -o clustering_${barcode_id}
 
     # Paso 2: Filtrar clusters automáticamente con el script externo
-    ./filter_clusters.sh clustering_${barcode_id}
+    ${params.filterClustersScript} clustering_${barcode_id}
+
+    # Verificar si hay clusters válidos
+    cluster_count=\$(find clustering_${barcode_id}/ -type d -name "cluster_*" | wc -l)
+
+    if [[ "\$cluster_count" -eq 0 ]]; then
+        echo "No se encontraron clusters válidos. Abortando." >&2
+        exit 1
+    fi
+
+    # Paso 3: Reconciliar clusters buenos
+    for cluster_dir in clustering_${barcode_id}/cluster_*; do
+        trycycler reconcile \
+            --cluster_dir \$cluster_dir \
+            --reads ${barcodefile}
+    done
 
     # Paso 3: Reconciliar clusters buenos
     for cluster_dir in clustering_${barcode_id}/cluster_*; do
