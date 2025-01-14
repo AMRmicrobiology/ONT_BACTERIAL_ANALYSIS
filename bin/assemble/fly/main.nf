@@ -1,7 +1,8 @@
 process SUB_SAMPLE_2 {
     tag "ASSAMBLE FLY LONG READS ${sample_code}"
+    
     publishDir "${params.outdir}/FLY_STRUCTURAL", mode: 'copy'
-    cache 'deep'
+
     
     input:
 
@@ -11,7 +12,7 @@ process SUB_SAMPLE_2 {
 
     tuple val(barcode_id),path("flye_output_${sample_code}/assembly.fasta"), emit: fly_assambly_tuple
     tuple val(barcode_id),path("flye_output_${sample_code}/assembly_info.txt"), emit: info_cov
-    tuple val (barcode_id),path("flye_output_${sample_code}/assembly_graph.gfa"), emit: grafic_assemble
+    tuple val(barcode_id),path("flye_output_${sample_code}/assembly_graph.gfa"), emit: grafic_assemble
 
     script:
 
