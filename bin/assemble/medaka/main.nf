@@ -3,7 +3,7 @@ process MEDAKA {
 
     container "$params.medaka.docker"
 
-    publishDir "${params.outdir}/5-assemble/medaka_results", mode: 'copy'
+    publishDir "${params.outdir}/2-assemble/medaka_results", mode: 'copy'
     
     input:
     tuple val(sample_code), path(trimmed_reads), path(final_polishing_fasta)

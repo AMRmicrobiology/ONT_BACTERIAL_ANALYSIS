@@ -1,14 +1,19 @@
 task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	peak_vmem	rchar	wchar
-2	4e/75baf9	3091717	assemble:pre_process:QC (Quality control RAW data)	COMPLETED	0	2025-01-13 14:36:20.645	49.9s	47.4s	83.6%	1.8 GB	53.1 GB	781.3 MB	374.7 MB
-8	d5/ca722c	3100314	assemble:pre_process:QC (Quality control RAW data)	COMPLETED	0	2025-01-13 14:37:10.593	48.2s	44.7s	82.7%	1.7 GB	52.9 GB	683.6 MB	326.6 MB
-5	c6/bc98b1	3112771	assemble:pre_process:QC (Quality control RAW data)	COMPLETED	0	2025-01-13 14:37:58.829	1m 8s	1m 5s	82.9%	1.4 GB	44.2 GB	1 GB	500.1 MB
-3	7f/df0d9a	3130860	assemble:pre_process:QC (Quality control RAW data)	COMPLETED	0	2025-01-13 14:39:06.348	1m 13s	1m 11s	83.5%	2.6 GB	71.9 GB	1.2 GB	577.9 MB
-1	33/fd4a45	3148260	assemble:pre_process:QC (Quality control RAW data)	COMPLETED	0	2025-01-13 14:40:18.994	1m 13s	1m 6s	49.9%	2.6 GB	71.9 GB	581.7 MB	272.8 MB
-7	66/ee330a	3166740	assemble:pre_process:QC (Quality control RAW data)	COMPLETED	0	2025-01-13 14:41:32.179	1m 8s	29.8s	64.8%	1.8 GB	53.1 GB	223.7 MB	92.2 MB
-4	4f/a28e7b	3183933	assemble:pre_process:QC (Quality control RAW data)	COMPLETED	0	2025-01-13 14:42:40.418	1m 12s	24.6s	51.7%	2.5 GB	71.9 GB	147.1 MB	58.1 MB
-6	3b/7801f1	3200349	assemble:pre_process:QC (Quality control RAW data)	COMPLETED	0	2025-01-13 14:43:52.432	2m 7s	2m 4s	90.9%	1.8 GB	53.1 GB	1.4 GB	695.4 MB
-9	11/4597e3	3225866	assemble:pre_process:TRIMMING (prunning process)	COMPLETED	0	2025-01-13 14:45:59.951	6m 43s	6m 26s	361.8%	1.4 GB	13.1 GB	2 GB	1.2 GB
-10	b6/abdea6	3313256	assemble:pre_process:TRIMMING (prunning process)	COMPLETED	0	2025-01-13 14:52:43.034	9m 43s	6m 15s	329.2%	1.2 GB	13 GB	1.7 GB	1.1 GB
-11	b4/5b4380	3404853	assemble:pre_process:TRIMMING (prunning process)	COMPLETED	0	2025-01-13 15:02:26.452	10m 2s	9m 6s	317.6%	1.7 GB	13.1 GB	2.6 GB	1.6 GB
-12	55/6b43c1	3584390	assemble:pre_process:TRIMMING (prunning process)	FAILED	125	2025-01-13 15:12:28.801	16.3s	16s	-	-	-	-	-
-13	4a/b991d0	3597313	assemble:pre_process:TRIMMING (prunning process)	ABORTED	-	2025-01-13 15:12:45.110	-	-	-	-	-	-	-
+8	d5/ca722c	3100314	assemble:pre_process:QC (Quality control RAW data)	CACHED	0	2025-01-13 14:37:10.593	48.2s	44.7s	82.7%	1.7 GB	52.9 GB	683.6 MB	326.6 MB
+3	7f/df0d9a	3130860	assemble:pre_process:QC (Quality control RAW data)	CACHED	0	2025-01-13 14:39:06.348	1m 13s	1m 11s	83.5%	2.6 GB	71.9 GB	1.2 GB	577.9 MB
+7	66/ee330a	3166740	assemble:pre_process:QC (Quality control RAW data)	CACHED	0	2025-01-13 14:41:32.179	1m 8s	29.8s	64.8%	1.8 GB	53.1 GB	223.7 MB	92.2 MB
+5	c6/bc98b1	3112771	assemble:pre_process:QC (Quality control RAW data)	CACHED	0	2025-01-13 14:37:58.829	1m 8s	1m 5s	82.9%	1.4 GB	44.2 GB	1 GB	500.1 MB
+1	33/fd4a45	3148260	assemble:pre_process:QC (Quality control RAW data)	CACHED	0	2025-01-13 14:40:18.994	1m 13s	1m 6s	49.9%	2.6 GB	71.9 GB	581.7 MB	272.8 MB
+4	4f/a28e7b	3183933	assemble:pre_process:QC (Quality control RAW data)	CACHED	0	2025-01-13 14:42:40.418	1m 12s	24.6s	51.7%	2.5 GB	71.9 GB	147.1 MB	58.1 MB
+2	4e/75baf9	3091717	assemble:pre_process:QC (Quality control RAW data)	CACHED	0	2025-01-13 14:36:20.645	49.9s	47.4s	83.6%	1.8 GB	53.1 GB	781.3 MB	374.7 MB
+6	3b/7801f1	3200349	assemble:pre_process:QC (Quality control RAW data)	CACHED	0	2025-01-13 14:43:52.432	2m 7s	2m 4s	90.9%	1.8 GB	53.1 GB	1.4 GB	695.4 MB
+12	b4/5b4380	3404853	assemble:pre_process:TRIMMING (prunning process)	CACHED	0	2025-01-13 15:02:26.452	10m 2s	9m 6s	317.6%	1.7 GB	13.1 GB	2.6 GB	1.6 GB
+9	b6/abdea6	3313256	assemble:pre_process:TRIMMING (prunning process)	CACHED	0	2025-01-13 14:52:43.034	9m 43s	6m 15s	329.2%	1.2 GB	13 GB	1.7 GB	1.1 GB
+15	11/4597e3	3225866	assemble:pre_process:TRIMMING (prunning process)	CACHED	0	2025-01-13 14:45:59.951	6m 43s	6m 26s	361.8%	1.4 GB	13.1 GB	2 GB	1.2 GB
+14	eb/7d0964	1227498	assemble:pre_process:TRIMMING (prunning process)	COMPLETED	0	2025-01-14 11:06:44.735	1m 23s	1m 22s	393.8%	366.7 MB	13 GB	305.3 MB	181.3 MB
+16	79/b8a3c0	1235161	assemble:pre_process:TRIMMING (prunning process)	COMPLETED	0	2025-01-14 11:08:07.806	5m 27s	5m 26s	493.7%	2.2 GB	13.1 GB	3.6 GB	2.3 GB
+11	d2/75611c	1267248	assemble:pre_process:TRIMMING (prunning process)	COMPLETED	0	2025-01-14 11:13:34.841	4m 58s	4m 58s	483.8%	1.9 GB	13.1 GB	3 GB	1.9 GB
+10	e4/9f5793	1298746	assemble:pre_process:TRIMMING (prunning process)	COMPLETED	0	2025-01-14 11:18:33.110	2m	1m 59s	429.7%	498.4 MB	13 GB	488.9 MB	297.5 MB
+13	18/28862c	1313113	assemble:pre_process:TRIMMING (prunning process)	COMPLETED	0	2025-01-14 11:20:32.636	3m 22s	3m 21s	440.5%	1.1 GB	13 GB	1.4 GB	904.3 MB
+18	6a/f3e47c	1337520	assemble:assamble_process:ASSEMBLE (ASSAMBLE FLY LONG READS PT_24_16)	COMPLETED	0	2025-01-14 11:23:54.295	37m 52s	37m 52s	100.3%	9 GB	9.6 GB	6.7 GB	3.3 GB
+19	bd/fae5ca	1528314	assemble:assamble_process:ASSEMBLE (ASSAMBLE FLY LONG READS PT_24_3)	COMPLETED	0	2025-01-14 12:01:46.679	46m 19s	46m 18s	100.2%	9.1 GB	9.8 GB	7.4 GB	3.6 GB

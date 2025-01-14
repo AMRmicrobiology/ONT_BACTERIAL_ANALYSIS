@@ -4,8 +4,10 @@ process QUAST {
     container "$params.quast.docker"
 
 
-    publishDir "${params.outdir}/5-assemble/QUAST", mode: 'copy'
-    
+    publishDir "${params.outdir}/2-assemble/QUAST", mode: 'copy'
+
+    errorStrategy 'ignore'
+
     input:
     tuple val(sample_code), path(consensus)
 
@@ -15,6 +17,10 @@ process QUAST {
     script:
 
     """
-    quast.py -o quast_result_${sample_code} ${consensus}
+    if [ -s ${consensus} ]; then
+        quast.py -o quast_result_${sample_code} ${consensus} || echo "QUAST failed for ${sample_code}" > quast_result_${sample_code}/quast_error.log
+    else
+        echo "Skipping QUAST for ${sample_code} due to missing or empty consensus file." > quast_result_${sample_code}/quast_error.log
+    fi
     """
 }
