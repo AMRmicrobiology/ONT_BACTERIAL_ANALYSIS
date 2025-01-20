@@ -13,6 +13,7 @@ process SUB_SAMPLE_2 {
     tuple val(sample_code),path("flye_output_${sample_code}/assembly.fasta"), emit: fly_assambly_tuple
     tuple val(sample_code),path("flye_output_${sample_code}/assembly_info.txt"), emit: info_cov
     tuple val(sample_code),path("flye_output_${sample_code}/assembly_graph.gfa"), emit: grafic_assemble
+    tuple val(sample_code),path("nanostat_${sample_code}.txt"), emit: quality_control
 
     script:
 
@@ -22,6 +23,8 @@ process SUB_SAMPLE_2 {
 
     # Paso 2: Ejecutar Flye usando el archivo sin duplicados
     flye --nano-raw dedup_${sample_code}.fastq --out-dir flye_output_${sample_code} --genome-size ${genome_size}
-
+    
+    # Paso 3: Analizar el ensamblaje con NanoStat
+    NanoStat --fastq dedup_${sample_code}.fastq --out nanostat_${sample_code}.txt
     """
 }
