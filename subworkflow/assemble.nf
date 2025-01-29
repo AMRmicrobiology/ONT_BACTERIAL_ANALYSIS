@@ -106,6 +106,8 @@ coverage_ch = fly_ch.info_cov
    
     medaka_consensum_ch= MEDAKA(medaka_ch)
 
+    busco_ch = BUSCO(medaka_consensum_ch.assemble_medaka)
+
     quast_ch = QUAST(medaka_consensum_ch.assemble_medaka)
 
     amr_ch = AMR(medaka_consensum_ch.assemble_medaka)
