@@ -18,6 +18,7 @@ Configuration environemnt:
 
 include { QC                                            }     from '../bin/qc/main'
 include { TRIMMING                                      }     from '../bin/trimming/main'
+include { NANOCOMP                                      }     from '../bin/qc/nanocomp/main'
 include { SUB_SAMPLE_2 as ASSEMBLE                      }     from '../bin/assemble/fly/main'
 include { POLISHING_ROUND                               }     from '../bin/polishing/main'
 include { MEDAKA                                        }     from '../bin/assemble/medaka/main'
@@ -28,7 +29,7 @@ include { MLST                                          }     from '../bin/mlst/
 
 workflow assemble {
     preprocess_output = pre_process()
-    assambleprocess_output = assamble_process(preprocess_output.trimming_ch)
+    assambleprocess_output = assamble_process(preprocess_output.trimming_ch, preprocess_output.trimming_ch_2, preprocess_output.pre_data_qc)
 }
 
 workflow pre_process {
@@ -37,18 +38,28 @@ workflow pre_process {
     barcode_dir_ch = channel.fromPath(params.input, type: 'dir').map{barcode_dir -> tuple(barcode_dir.baseName, barcode_dir)}
     qc_ch = QC(barcode_dir_ch)
     trimming_ch = TRIMMING(qc_ch.fastq_combine)
+    trimming_ch_2 = trimming_ch.barcodefile_compress
+    pre_data_qc = qc_ch.fastq_combine
 
     emit:
     trimming_ch
+    trimming_ch_2
+    pre_data_qc
 
 }
 
 workflow assamble_process {
     take:
     trimming_ch
+    trimming_ch_2
+    pre_data_qc
     
     main:
-    
+    pre_data_qc.map{i -> i[1]}.view()
+
+    /*
+    nocomp_ch = NANOCOMP(pre_data_qc, trimming_ch_2)
+
     genome_size_ch = Channel
                         .fromPath(params.genome_size_file)
                         .splitCsv(header: true)
@@ -101,5 +112,5 @@ coverage_ch = fly_ch.info_cov
     amr_ch = AMR(medaka_consensum_ch.assemble_medaka)
     amr_2_ch = AMR_2(medaka_consensum_ch.assemble_medaka)
     mlst_ch = MLST(medaka_consensum_ch.assemble_medaka)
-
+    */
 }
