@@ -15,7 +15,7 @@ process NANOCOMP {
 
     """
     
-    Nanocomp --fastq ${barcode_dir} ${barcode_id_clean} -o Nanocomp
+    NanoComp --fastq ${barcode_dir} ${barcode_id_clean} -o Nanocomp
     
     """
 }

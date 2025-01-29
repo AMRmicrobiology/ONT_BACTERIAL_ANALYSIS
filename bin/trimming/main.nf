@@ -1,8 +1,6 @@
 process TRIMMING {
     tag "prunning process"
     
-    publishDir "${params.outdir}/1-Nanoplot/POST/", mode: 'copy'
-
     input:
     tuple val(barcode_id), path(fastq_file)
     

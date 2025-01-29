@@ -37,8 +37,9 @@ workflow pre_process {
     main:
     barcode_dir_ch = channel.fromPath(params.input, type: 'dir').map{barcode_dir -> tuple(barcode_dir.baseName, barcode_dir)}
     qc_ch = QC(barcode_dir_ch)
-    trimming_ch = TRIMMING(qc_ch.fastq_combine)
-    trimming_ch_2 = trimming_ch.barcodefile_compress
+    trimming_before_ch = TRIMMING(qc_ch.fastq_combine)
+    trimming_ch = trimming_before_ch.barcodefile_gz
+    trimming_ch_2 = trimming_before_ch.barcodefile_compress
     pre_data_qc = qc_ch.fastq_combine
 
     emit:
@@ -55,10 +56,8 @@ workflow assamble_process {
     pre_data_qc
     
     main:
-    pre_data_qc.map{i -> i[1]}.view()
 
-    /*
-    nocomp_ch = NANOCOMP(pre_data_qc, trimming_ch_2)
+    nocomp_ch = NANOCOMP(pre_data_qc.map{i -> i[1]}.collect(), trimming_ch_2.map{i -> i[1]}.collect())
 
     genome_size_ch = Channel
                         .fromPath(params.genome_size_file)
@@ -112,5 +111,5 @@ coverage_ch = fly_ch.info_cov
     amr_ch = AMR(medaka_consensum_ch.assemble_medaka)
     amr_2_ch = AMR_2(medaka_consensum_ch.assemble_medaka)
     mlst_ch = MLST(medaka_consensum_ch.assemble_medaka)
-    */
+
 }
