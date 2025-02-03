@@ -7,12 +7,13 @@
 [![license-shield]][license-url]
 
 
-
+## Introduction
+This repository hosts a pipeline buikd with Nextflow for whole-genome sequencing (WGS) analysis specifically otimised for **Oxford Nanopore Technology (ONT)** data of bacterial genomes. It is designed to offer an automated, reproducible, and scalable solution for processing large-scale genomic data in clinical microbiology research.
 
 ## Contents
 - [Pipeline summary](#pipeline-summary)
-    - [ASSEMBLE](#reference-genome)
-    - [HIBRYD](#Hybrid)
+    - [Assemble](#reference-genome)
+    - [Hybrid](#Hybrid)
 - [Installation](#installation)
 - [How to Use It](#how-to-use-it)
     - [Parameters](#parameters)
@@ -20,24 +21,31 @@
 
 
 
-## Pipeline summary:
+## Pipeline summary
 
+The pipeline includes the following steps:
+
+1. Quality control: Assessment of read quality before and after filtering using [Nanocomp](https://github.com/wdecoster/nanocomp). Filtering of low-quality bases and short reads was performed using [Filtlong](https://github.com/rrwick/Filtlong) followed by removal of adapter ONT adapter sequences using [Porechop](https://github.com/rrwick/Porechop).
+
+The mode --assemble is followed by:
+
+2.  
 
 Create for a multiplex input must to add a file **genome_size.csv**  with size of each genome (bp) per barcode. :
 
 e.g
 ```
-barcode,genome_size
-barcode01,3000000
-barcode02,4500000
-barcode03,5000000
-barcode04,4000000
-barcode05,3200000
-barcode06,3500000
+barcode,genome_size,sample_code
+barcode01,3000000,306 
+barcode02,4500000,C2_72
+barcode03,5000000,C2_75
+barcode04,4000000,C2_76
+barcode05,3200000,ST89
+barcode06,3500000,ST23
 ```
 
 
-### polishing process
+### Polishing process
 
 The optimal number of polishing rounds is determined automatically using the CART algorithm. The prediction is based on multiple parameters, including error rate, N50/L50, genome coverage, Total Length of Matches, Average Occurrences, Distinct Minimizers, and processing time per round.
 
@@ -103,6 +111,7 @@ nextflow run main.nf --mode assemble --genome_size_file barcode_info.csv -profil
 ```
 
 --mode : assemble / hybrid_amr / hybrid_vc 
+
 -profile:
 
 
