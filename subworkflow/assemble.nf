@@ -22,6 +22,7 @@ include { NANOCOMP                                      }     from '../bin/qc/na
 include { SUB_SAMPLE_2 as ASSEMBLE                      }     from '../bin/assemble/fly/main'
 include { POLISHING_ROUND                               }     from '../bin/polishing/main'
 include { MEDAKA                                        }     from '../bin/assemble/medaka/main'
+include { BUSCO                                         }     from '../bin/qc/busco/main'
 include { AMR                                           }     from '../bin/AMR/abricate/main'
 include { AMR_2                                         }     from '../bin/AMR/resfinder/main'
 include { QUAST                                         }     from '../bin/qc/quast/main'
