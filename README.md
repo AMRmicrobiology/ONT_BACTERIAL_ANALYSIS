@@ -25,30 +25,15 @@ This repository hosts a pipeline buikd with Nextflow for whole-genome sequencing
 
 The pipeline includes the following steps:
 
-1. Quality control: Assessment of read quality before and after filtering using [Nanocomp](https://github.com/wdecoster/nanocomp). Filtering of low-quality bases and short reads was performed using [Filtlong](https://github.com/rrwick/Filtlong) followed by removal of adapter ONT adapter sequences using [Porechop](https://github.com/rrwick/Porechop).
+1. **Quality control**: Assessment of read quality before and after filtering using [Nanocomp](https://github.com/wdecoster/nanocomp). Filtering of low-quality bases and short reads was performed using [Filtlong](https://github.com/rrwick/Filtlong) followed by removal of adapter ONT adapter sequences using [Porechop](https://github.com/rrwick/Porechop).
 
 The mode --assemble is followed by:
 
-2.  
+2. **Assembly**: *De novo* assembly using the single-moleucle assembler [Flye](https://github.com/mikolmogorov/Flye) followed by a **polishing** step. 
 
-Create for a multiplex input must to add a file **genome_size.csv**  with size of each genome (bp) per barcode. :
+* <ins>Polishing process</ins>: The optimal number of polishing rounds is determined automatically using the CART algorithm. The prediction is based on multiple parameters, including error rate, N50/L50, genome coverage, Total Length of Matches, Average Occurrences, Distinct Minimizers, and processing time per round.
 
-e.g
-```
-barcode,genome_size,sample_code
-barcode01,3000000,306 
-barcode02,4500000,C2_72
-barcode03,5000000,C2_75
-barcode04,4000000,C2_76
-barcode05,3200000,ST89
-barcode06,3500000,ST23
-```
-
-
-### Polishing process
-
-The optimal number of polishing rounds is determined automatically using the CART algorithm. The prediction is based on multiple parameters, including error rate, N50/L50, genome coverage, Total Length of Matches, Average Occurrences, Distinct Minimizers, and processing time per round.
-
+<center>
 <table>
     <thead>
         <tr>
@@ -102,6 +87,24 @@ The optimal number of polishing rounds is determined automatically using the CAR
         </tr>
     <t/body>
 </table>
+</center>
+
+
+3. 
+
+Create for a multiplex input must to add a file **genome_size.csv**  with size of each genome (bp) per barcode. :
+
+e.g
+```
+barcode,genome_size,sample_code
+barcode01,3000000,306 
+barcode02,4500000,C2_72
+barcode03,5000000,C2_75
+barcode04,4000000,C2_76
+barcode05,3200000,ST89
+barcode06,3500000,ST23
+```
+
 
 
 
