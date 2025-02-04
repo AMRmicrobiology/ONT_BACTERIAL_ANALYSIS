@@ -159,11 +159,11 @@ nextflow run main.nf --mode assemble --genome_size_file barcode_info.csv --input
 -w: Path to the temporary work directory where files will be stored (default: ./work).
 
 ##### Filter
---min_length 200 
+--min_length: Minimum length threshold (bp). Default: 1000 
 
---keep_percent 70 
+--min_mean_q: minimum mean quality threshold. Default: 10
 
---min_mean_q 9
+--keep_percent: Throw out the worst (100-x)% of read bases. Default: 90 (throw the worst 10% of read bases) 
 
 ## REFERENCE
 
