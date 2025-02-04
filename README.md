@@ -29,9 +29,9 @@ The pipeline includes the following steps:
 
 The mode --assemble is followed by:
 
-2. **Assembly**: *De novo* assembly using the single-moleucle assembler [Flye](https://github.com/mikolmogorov/Flye) followed by a **polishing** step. 
+2. **Assembly**: *De novo* assembly using the single-moleucle assembler [Flye](https://github.com/mikolmogorov/Flye) followed by a **polishing** step and the construction of a consensus sequence using [Medaka](https://github.com/nanoporetech/medaka). 
 
-* <ins>Polishing process</ins>: The optimal number of polishing rounds is determined automatically using the CART algorithm. The prediction is based on multiple parameters, including error rate, N50/L50, genome coverage, Total Length of Matches, Average Occurrences, Distinct Minimizers, and processing time per round.
+    * <ins>Polishing process</ins>: The optimal number of polishing rounds is determined automatically using the CART algorithm. The prediction is based on multiple parameters, which include error rate, N50/L50, genome coverage, Total Length of Matches, Average Occurrences, Distinct Minimizers, and processing time per round.
 
 <center>
 <table>
@@ -89,12 +89,43 @@ The mode --assemble is followed by:
 </table>
 </center>
 
+3. **Genome QC**:  Structural quality metrics of the assembly will be evaluated using [QUAST](https://quast.sourceforge.net/) and its completeness with [BUSCO](https://busco.ezlab.org/). 
 
-3. 
+4. **Post-assembly analyses**:
+    *   Mass screening of contigs for antimicrobial resistance or virulence genes using [ABRIcate](https://github.com/tseemann/abricate).
+    * Identification of antimicrobial resistance genes and point mutations in protein and/or assembled nucleotide sequences using [AMRFinder](https://github.com/ncbi/amr).
+    * Scan genome against traditional PubMLST schemes using [mlst](https://github.com/tseemann/mlst). 
 
-Create for a multiplex input must to add a file **genome_size.csv**  with size of each genome (bp) per barcode. :
+# Installation
+The prerequisites to run the pipeline are:
+- Install [Nextflow](https://github.com/nextflow-io/nextflow)
+- Install [Docker](https://github.com/docker/docker-install) or [Singularity](https://github.com/sylabs/singularity-admindocs/blob/main/installation.rst) for container support
+- Ensure [Java 8](https://github.com/winterbe/java8-tutorial) or higher is installed
 
-e.g
+Clone the Repository:
+
+```
+# Clone the workflow repository
+git clone https://github.com/AMRmicrobiology/ONT_BACTERIAL_ANALYSIS.git
+
+# Move inside the main directory
+cd ONT_BACTERIAL_ANALYSIS
+```
+<!-- compl -->
+### Local (conda)
+
+  ```
+  conda create -n Nanopore -f nanoporeWGS.yml busco.yml
+  conda activate Nanopore
+  ```
+
+# How to use it?
+
+Inside the ONT_BACTERIAL_ANALYSIS directory, modify the file  **genome_size.csv** to include for each barcode included, its expected genome size (bp) and the sample code you want to assign:
+>[!IMPORTANT]
+The sample code names should not include "-"
+
+e.g.
 ```
 barcode,genome_size,sample_code
 barcode01,3000000,306 
@@ -104,19 +135,35 @@ barcode04,4000000,C2_76
 barcode05,3200000,ST89
 barcode06,3500000,ST23
 ```
+Run the pipeline using the following command, adjusting the parameters as needed:
 
-
-
-
-## COMAND LINE
+*ASSEMBLE*
 ```
-nextflow run main.nf --mode assemble --genome_size_file barcode_info.csv -profile <docker/singularity/conda>
+nextflow run main.nf --mode assemble --genome_size_file barcode_info.csv --input '/path/to/data/barcode*' -profile <docker/singularity/conda>
 ```
+### Parameters
 
---mode : assemble / hybrid_amr / hybrid_vc 
+--mode: Depends on the analysis assemble / hybrid_amr / hybrid_vc.
 
--profile:
+--input: Path to input folders containing the raw .fastq files for each barcode after performing ONT absecalling.
 
+--outdir: Directory where the results will be stored (default: ONT_BACTERIAL_ANALYSIS/data/out).
+
+-profile: Specifies the execution profile (docker, singularity or conda).
+
+--enome_size_file: .csv file containing the expected genome size and sample code per each of the barcodes.
+
+
+#### Optional parameters
+
+-w: Path to the temporary work directory where files will be stored (default: ./work).
+
+##### Filter
+--min_length 200 
+
+--keep_percent 70 
+
+--min_mean_q 9
 
 ## REFERENCE
 
