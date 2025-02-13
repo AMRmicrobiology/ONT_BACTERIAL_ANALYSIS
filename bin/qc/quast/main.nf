@@ -4,7 +4,7 @@ process QUAST {
     container "$params.quast.docker"
 
 
-    publishDir "${params.outdir}/2-assemble/QUAST", mode: 'copy'
+    publishDir "${params.outdir}/2-assemble/3-QUAST", mode: 'copy'
 
     errorStrategy 'ignore'
 

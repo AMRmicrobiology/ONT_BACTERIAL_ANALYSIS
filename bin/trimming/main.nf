@@ -10,7 +10,7 @@ process TRIMMING {
     tuple val(barcode_id), path("${barcode_id}_clean.fastq.gz"), emit: barcodefile_compress
     
     // Define default parameter values with fallback
-    def min_length = params.min_length ?: 1000
+    def min_length = params.min_length ?: 500
     def keep_percent = params.keep_percent ?: 90
     def min_mean_q = params.min_mean_q ?: 10 
     

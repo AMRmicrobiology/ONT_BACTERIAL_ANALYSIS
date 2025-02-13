@@ -3,6 +3,8 @@ process QC {
 
     cache 'deep'
     
+    publishDir "${params.outdir}/1-Nanoplot/data_QC", mode: 'copy'
+
     input:
     tuple val(barcode), path(barcode_dir)
 
