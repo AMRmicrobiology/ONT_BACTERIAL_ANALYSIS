@@ -22,10 +22,12 @@ include { NANOCOMP                                      }     from '../bin/qc/na
 include { SUB_SAMPLE_2 as ASSEMBLE                      }     from '../bin/assemble/fly/main'
 include { POLISHING_ROUND                               }     from '../bin/polishing/main'
 include { MEDAKA                                        }     from '../bin/assemble/medaka/main'
+include { PROKKA                                        }     from '../bin/annotation/prokka/main'
 include { BUSCO                                         }     from '../bin/qc/busco/main'
+include { QUAST                                         }     from '../bin/qc/quast/main'
+include { MULTIQC                                       }     from '../bin/qc/multiqc/main'
 include { AMR                                           }     from '../bin/AMR/abricate/main'
 include { AMR_2                                         }     from '../bin/AMR/resfinder/main'
-include { QUAST                                         }     from '../bin/qc/quast/main'
 include { MLST                                          }     from '../bin/mlst/main'
 
 workflow assemble {
@@ -107,10 +109,14 @@ coverage_ch = fly_ch.info_cov
    
     medaka_consensum_ch= MEDAKA(medaka_ch)
 
+    prokka_ch = PROKKA (medaka_consensum_ch.assemble_medaka)
+
     busco_ch = BUSCO(medaka_consensum_ch.assemble_medaka)
 
     quast_ch = QUAST(medaka_consensum_ch.assemble_medaka)
 
+    multiqc_ch = MULTIQC( quast_ch, busco_ch)
+    
     amr_ch = AMR(medaka_consensum_ch.assemble_medaka)
     amr_2_ch = AMR_2(medaka_consensum_ch.assemble_medaka)
     mlst_ch = MLST(medaka_consensum_ch.assemble_medaka)
