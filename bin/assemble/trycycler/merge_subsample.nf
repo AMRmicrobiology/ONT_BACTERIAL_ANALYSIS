@@ -19,6 +19,7 @@ process MERGE_ASSEMBLE {
            ${raven_aseembly_file} \
         -r ${barcodefile} \
         -o clustering_${barcode_id}
+        --threads 8
 
     # Paso 2: Filtrar clusters automáticamente con el script externo
     ${params.filterClustersScript} clustering_${barcode_id}

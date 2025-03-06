@@ -24,7 +24,7 @@ process SUB_SAMPLE_2 {
     NanoStat --fastq dedup_${sample_code}.fastq > dedup_${sample_code}_NanoStat.log
 
     # Paso 2: Ejecutar Flye usando el archivo sin duplicados
-    flye --nano-raw dedup_${sample_code}.fastq --out-dir flye_output_${sample_code} --genome-size ${genome_size} --plasmids
+    flye --nano-raw dedup_${sample_code}.fastq --out-dir flye_output_${sample_code} --genome-size ${genome_size} --plasmids --threads 8
 
     """
 }

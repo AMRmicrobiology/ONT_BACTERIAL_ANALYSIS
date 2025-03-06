@@ -54,7 +54,7 @@ include { AMR_2 as POST_ANALYSIS_AMRFINDER            }     from '../bin/AMR/AMR
 
 workflow hybrid_vc {
     preprocess_output = pre_process()
-    assambleprocess_output = assamble_process(preprocess_output.trimming_ch)
+    assambleprocess_output = assamble_process(preprocess_output.trimming_files_ch)
      /*
     vcprocess_output = workflow_vc()
     amrprocess_output = workflow_amr( preprocess_output.contigs_ch)
@@ -67,15 +67,16 @@ workflow pre_process {
     barcode_dir_ch = channel.fromPath(params.input, type: 'dir').map{barcode_dir -> tuple(barcode_dir.baseName, barcode_dir)}
     qc_ch = QC(barcode_dir_ch)
     trimming_ch = TRIMMING(qc_ch.fastq_combine)
+    trimming_files_ch = trimming_ch.barcodefile_gz
 
     emit:
-    trimming_ch
+    trimming_files_ch
 
 }
 
 workflow assamble_process {
     take:
-    trimming_ch
+    trimming_files_ch
     
     main:
 
@@ -83,7 +84,7 @@ workflow assamble_process {
                           .splitCsv(header:true)
                           .collectEntries { row -> [(row.barcode): row.genome_size]}
 
-    subsample_trycycler_ch = SUB_SAMPLE(trimming_ch, genome_size_map)
+    subsample_trycycler_ch = SUB_SAMPLE(trimming_files_ch, genome_size_map)
     
     genome_size_ch = Channel
                         .fromPath(params.genome_size_file)

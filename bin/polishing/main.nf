@@ -19,10 +19,10 @@ process POLISHING_ROUND {
         output_fasta="racon_round\${round}_${sample_code}.fasta"
 
         # Paso 1: Alineación con Minimap2
-        minimap2 -ax map-ont \${input_fasta} ${trimmed_reads} > \${aln_file}
+        minimap2 -ax map-ont \${input_fasta} ${trimmed_reads} -t 8 > \${aln_file}
 
         # Paso 2: Pulido con Racon
-        racon ${trimmed_reads} \${aln_file} \${input_fasta} > \${output_fasta}
+        racon ${trimmed_reads} \${aln_file} \${input_fasta} --threads 8 > \${output_fasta}
 
         # Verificar que `racon` generó correctamente `output_fasta`
         if [ ! -f \${output_fasta} ]; then

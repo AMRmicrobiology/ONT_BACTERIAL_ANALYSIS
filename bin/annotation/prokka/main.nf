@@ -1,6 +1,8 @@
 process PROKKA {
     tag "PROKKA ANNOTATION"
 
+    container "$params.prokka.docker"
+    
     publishDir "${params.outdir}/2-assemble/annotations", mode: 'copy', saveAs: { filename ->
         if (filename.endsWith(".gff")) {
             return "6-prokka/${sample_code}/${sample_code}.gff"

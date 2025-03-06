@@ -12,7 +12,9 @@ process SUB_SAMPLE_1 {
     """
     canu -p ${barcode_id}_assembly -d canu_output_${barcode_id} \
         genomeSize=${genome_size_map} \
-        -nanopore-raw ${reads_path}
+        -nanopore-raw ${reads_path} \
+        maxThreads=8
+        
     mv canu_output_${barcode_id}/${barcode_id}_assembly.contigs.fasta canu_output_${barcode_id}.fasta
     """
 }
