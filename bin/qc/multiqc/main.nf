@@ -2,6 +2,8 @@ process MULTIQC {
 
     tag "Generating MultiQC report"
     
+    container "$params.quast.docker"
+    
     publishDir "${params.outdir}/1-QC/genomeQC", mode: 'copy'
 
     input:
