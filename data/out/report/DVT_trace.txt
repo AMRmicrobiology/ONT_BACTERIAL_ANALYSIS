@@ -2,4 +2,5 @@ task_id	hash	native_id	name	status	exit	submit	duration	realtime	%cpu	peak_rss	p
 1	aa/95031f	1216672	hybrid_vc:pre_process:QC (Quality control RAW data)	CACHED	0	2025-03-05 12:27:12.275	55.2s	54.4s	100.4%	2.5 GB	71.8 GB	958.9 MB	464.6 MB
 2	c4/b86c65	1230687	hybrid_vc:pre_process:TRIMMING (prunning process)	CACHED	0	2025-03-05 12:28:07.569	5m 48s	5m 47s	360.0%	1.6 GB	13.1 GB	3.2 GB	1.9 GB
 3	17/896e6e	1302824	hybrid_vc:assamble_process:SUB_SAMPLE (SUB SAMPLE TRYCYCLER FROM LONG READS)	CACHED	0	2025-03-05 12:33:55.327	43.7s	24.9s	128.5%	70.8 MB	3.8 GB	15.1 GB	9.1 GB
-6	30/79c6c7	3850276	hybrid_vc:assamble_process:SUB_SAMPLE_2 (ASSAMBLE FLY LONG READS AB306)	CACHED	0	2025-03-05 17:35:34.942	20m 2s	20m 1s	437.2%	9.2 GB	13.1 GB	13.7 GB	4.3 GB
+6	8c/a75b03	4116744	hybrid_vc:assamble_process:SUB_SAMPLE_1 (Assemble with Canu - barcode20)	CACHED	0	2025-03-06 12:11:29.339	3h 46m 49s	3h 46m 48s	447.6%	7.3 GB	9.8 GB	278 GB	9.9 GB
+5	30/79c6c7	3850276	hybrid_vc:assamble_process:SUB_SAMPLE_2 (ASSAMBLE FLY LONG READS AB306)	CACHED	0	2025-03-05 17:35:34.942	20m 2s	20m 1s	437.2%	9.2 GB	13.1 GB	13.7 GB	4.3 GB
