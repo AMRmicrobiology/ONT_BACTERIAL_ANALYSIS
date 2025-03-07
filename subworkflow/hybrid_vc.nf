@@ -102,15 +102,23 @@ workflow assamble_process {
   //Raven assemble
     sub_sample_3_raven_ch = SUB_SAMPLE_3(reads_with_size_ch)
    
+
+   sub_sample_1_canu_ch.assembly_canu_file.view()
+   sub_sample_2_fly_ch.fly_assambly_tuple.view()
+   sub_sample_3_raven_ch.raven_aseembly_file.view()
+
+/*    
     trycyler_input_ch = reads_with_size_ch
         .join(sub_sample_1_canu_ch.assembly_canu_file)
         .join(sub_sample_2_fly_ch.fly_assambly_tuple)
         .join(sub_sample_3_raven_ch.raven_aseembly_file)
 
-
+    trycyler_input_ch.view()
+    
+    
     trycycler_ch = MERGE_ASSEMBLE(trycyler_input_ch)
     
-/*
+
     //POLISHING
      // Determinar el número máximo de rondas de pulido
     def max_rounds = params.min_mean_q <= 14 ? 8 : 5

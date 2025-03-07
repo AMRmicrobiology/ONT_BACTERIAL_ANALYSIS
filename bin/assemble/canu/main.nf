@@ -5,16 +5,16 @@ process SUB_SAMPLE_1 {
     tuple val(barcode_id), path(reads_path), val(genome_size_map), val (sample_code)
 
     output:
-    path("canu_output_${barcode_id}")
-    tuple val(barcode_id), path("canu_output_${barcode_id}.fasta"), emit: assembly_canu_file
+    path("canu_output_${sample_code}")
+    tuple val(sample_code), path("canu_output_${sample_code}.fasta"), emit: assembly_canu_file
 
     script:
     """
-    canu -p ${barcode_id}_assembly -d canu_output_${barcode_id} \
+    canu -p ${sample_code}_assembly -d canu_output_${sample_code} \
         genomeSize=${genome_size_map} \
         -nanopore-raw ${reads_path} \
         maxThreads=8
         
-    mv canu_output_${barcode_id}/${barcode_id}_assembly.contigs.fasta canu_output_${barcode_id}.fasta
+    mv canu_output_${sample_code}/${sample_code}_assembly.contigs.fasta canu_output_${sample_code}.fasta
     """
 }
