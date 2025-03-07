@@ -133,8 +133,8 @@ workflow amr_process {
 
     main:
     
-    amr_ch = AMR(medaka_consensum_ch.assemble_medaka)
-    amr_2_ch = AMR_2(medaka_consensum_ch.assemble_medaka)
-    mlst_ch = MLST(medaka_consensum_ch.assemble_medaka)
+    amr_ch = AMR(consensum_file_ch)
+    amr_2_ch = AMR_2(consensum_file_ch)
+    mlst_ch = MLST(consensum_file_ch)
     
 }
