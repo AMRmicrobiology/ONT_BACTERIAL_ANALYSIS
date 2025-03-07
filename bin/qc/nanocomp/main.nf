@@ -1,7 +1,7 @@
 process NANOCOMP {
     tag "Nanocomp process"
 
-    publishDir "${params.outdir}/1-QC/data_QC/Nanoplot", mode: 'copy'
+    publishDir "${params.outdir}/1-QC/data_QC", mode: 'copy'
 
     input:
     path (barcode_dir)
