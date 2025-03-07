@@ -33,6 +33,7 @@ include { MLST                                          }     from '../bin/mlst/
 workflow assemble {
     preprocess_output = pre_process()
     assambleprocess_output = assamble_process(preprocess_output.trimming_ch, preprocess_output.trimming_ch_2, preprocess_output.pre_data_qc)
+    amrprocess_output = amr_process (assambleprocess_output.consensum_file_ch)
 }
 
 workflow pre_process {
@@ -109,6 +110,8 @@ coverage_ch = fly_ch.info_cov
    
     medaka_consensum_ch= MEDAKA(medaka_ch)
 
+    consensum_file_ch = medaka_consensum_ch.assemble_medaka
+
     prokka_ch = PROKKA (medaka_consensum_ch.assemble_medaka)
 
     busco_ch = BUSCO(medaka_consensum_ch.assemble_medaka)
@@ -116,9 +119,22 @@ coverage_ch = fly_ch.info_cov
     quast_ch = QUAST(medaka_consensum_ch.assemble_medaka)
 
     multiqc_ch = MULTIQC( quast_ch, busco_ch)
+
+    emit:
+    consensum_file_ch
+
+}
+
+workflow amr_process {
+
+    take:
+
+    consensum_file_ch
+
+    main:
     
     amr_ch = AMR(medaka_consensum_ch.assemble_medaka)
     amr_2_ch = AMR_2(medaka_consensum_ch.assemble_medaka)
     mlst_ch = MLST(medaka_consensum_ch.assemble_medaka)
-
+    
 }
